@@ -1,0 +1,10 @@
+-*- mode: org -*-
+
+Gloa is an academic article management program written in Guile Scheme.
+It is intended to closely inter-operate with GNU Emacs.
+
+* Requirements
+   * GNU Guile >= 3.0
+
+* License
+GNU GPLv3 or later.  See =COPYING= for the full license text.
