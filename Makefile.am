@@ -16,8 +16,9 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Gloa.  If not, see <http://www.gnu.org/licenses/>.
 
-SOURCES =               \
+SOURCES =                \
   gloa/hello.scm         \
+  gloa/article.scm       \
   gloa.scm
 
 EXTRA_DIST =            \
