@@ -46,7 +46,14 @@ nobase_go_DATA = $(GOBJECTS)
 guile_install_go_files = install-nobase_goDATA
 $(guile_install_go_files): install-nobase_modDATA
 
-EXTRA_DIST += $(SOURCES) $(NOCOMP_SOURCES)
+TESTS =                \
+  tests/article.scm
+
+TEST_EXTENSIONS = .scm
+SCM_LOG_COMPILER = $(top_builddir)/pre-inst-env $(GUILE)
+AM_SCM_LOG_FLAGS = --no-auto-compile -L "$(top_srcdir)"
+
+EXTRA_DIST += $(SOURCES) $(NOCOMP_SOURCES) $(TESTS)
 GUILE_WARNINGS = -Wunbound-variable -Warity-mismatch -Wformat
 SUFFIXES = .scm .go
 .scm.go:
