@@ -26,6 +26,9 @@ EXTRA_DIST =            \
   pre-inst-env.in       \
   guix.scm
 
+bin_SCRIPTS =             \
+  scripts/gloa
+
 moddir=$(prefix)/share/guile/site/$(GUILE_EFFECTIVE_VERSION)
 godir=$(libdir)/guile/$(GUILE_EFFECTIVE_VERSION)/site-ccache
 

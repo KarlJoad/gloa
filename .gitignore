@@ -43,3 +43,4 @@ tmp
 /.version
 /guile
 .DS_Store
+/scripts/gloa

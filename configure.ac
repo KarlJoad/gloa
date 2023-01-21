@@ -11,5 +11,6 @@ fi
 
 AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([pre-inst-env], [chmod +x pre-inst-env])
+AC_CONFIG_FILES([scripts/gloa], [chmod +x scripts/gloa])
 
 AC_OUTPUT

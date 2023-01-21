@@ -11,6 +11,12 @@ It is intended to closely inter-operate with GNU Emacs.
 $ ./bootstrap && ./configure && make
 #+end_src
 
+* Running with Installing
+This works by adding ~gloa/scripts~ to the front of ~$PATH~, so we find the ~gloa~ script first.
+#+begin_src sh
+$ ./pre-inst-env gloa --help
+#+end_src
+
 * Development
 ** Updating ~pre-inst-env~
 To update the pre-install environment script, you must re-~configure~ the package.
