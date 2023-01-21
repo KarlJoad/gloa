@@ -6,5 +6,10 @@ It is intended to closely inter-operate with GNU Emacs.
 * Requirements
    * GNU Guile >= 3.0
 
+* Building
+#+begin_src sh
+$ ./bootstrap && ./configure && make
+#+end_src
+
 * License
 GNU GPLv3 or later.  See =COPYING= for the full license text.
