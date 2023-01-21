@@ -2,4 +2,4 @@
   #:export (hello-world))
 
 (define (hello-world)
-  (display "Hello, World!"))
+  (display "Hello, World!\n"))
