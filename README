@@ -11,5 +11,12 @@ It is intended to closely inter-operate with GNU Emacs.
 $ ./bootstrap && ./configure && make
 #+end_src
 
+* Development
+** Updating ~pre-inst-env~
+To update the pre-install environment script, you must re-~configure~ the package.
+#+begin_src sh
+$ ./configure
+#+end_src
+
 * License
 GNU GPLv3 or later.  See =COPYING= for the full license text.
