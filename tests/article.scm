@@ -18,3 +18,15 @@
                   "FirstName2 LastName2")))
 
 (test-end "article-creation")
+
+(test-begin "article-accessors")
+
+(test-equal "article title"
+  %test-title
+  (article-title %test-article))
+
+(test-equal "article authors"
+  %test-authors
+  (article-authors %test-article))
+
+(test-end "article-accessors")
