@@ -40,6 +40,8 @@
    (eval . (modify-syntax-entry ?$ "'"))
    (eval . (modify-syntax-entry ?+ "'"))
 
+   (eval . (put 'with-tests 'scheme-indent-function 1))
+
    ;; Emacs 28 changed the behavior of 'lisp-fill-paragraph', which causes the
    ;; first line of package descriptions to extrude past 'fill-column', and
    ;; somehow that is deemed more correct upstream (see:
