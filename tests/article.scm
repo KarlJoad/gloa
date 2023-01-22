@@ -30,3 +30,10 @@
   (article-authors %test-article))
 
 (test-end "article-accessors")
+
+(test-begin "article-is-article")
+
+(test-assert "article-is-article"
+  (article? %test-article))
+
+(test-end "article-is-article")
