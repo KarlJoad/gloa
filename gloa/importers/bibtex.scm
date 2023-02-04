@@ -14,10 +14,14 @@ returned."
     (lambda ()
       (let ((article-type (read-delimited "{"))
             (article-id   (read-line))
-            (tags-list    '())
-            (tag-line     ""))
-        (set! tag-line (read-line))
-        (while (not (eof-object? tag-line))
-          (display (string-append tag-line "\n"))
-          (set! tags-list (cons tag-line tags-list))
-          (set! tag-line (read-line)))))))
+            (tags-list    (read-bibtex-body)))))))
+
+(define (read-bibtex-body)
+  "Read the body of tags for a BibTeX entry, returning a list of strings.
+Each LINE of the BibTeX tag body is turned into one element of the list."
+  (let ((tags-list '())
+        (tag-line  (read-line)))
+    (while (not (eof-object? tag-line))
+      (set! tags-list (cons tag-line tags-list))
+      (set! tag-line (read-line)))
+    tags-list))
