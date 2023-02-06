@@ -9,8 +9,9 @@
 (define (import-bibtex filename)
   "Import a BibTeX file to GLoA by parsing the file into an alist, which is
 returned."
-  (call-with-input-file filename
-    parse-bibtex))
+  ;; (with-input-from-file filename thunk) could work here too
+  (let ((bibtex-info  (call-with-input-file filename parse-bibtex)))
+    (convert-fields bibtex-info)))
 
 (define (convert-fields bibtex-alist)
   (define (check-field field-pair matching-list)
