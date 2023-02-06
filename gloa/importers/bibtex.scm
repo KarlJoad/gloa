@@ -1,5 +1,6 @@
 (define-module (gloa importers bibtex)
   #:use-module (ice-9 rdelim)
+  #:use-module (srfi srfi-1)
   #:export (import-bibtex))
 
 (define %tags-with-numbers
@@ -10,6 +11,24 @@
 returned."
   (call-with-input-file filename
     parse-bibtex))
+
+(define (convert-fields bibtex-alist)
+  (define (check-field field-pair matching-list)
+    "Check if the FIELD-PAIR (tag . val) has a tag in MATCHING-LIST."
+    (let ((tag (car field-pair))
+          (val (cdr field-pair)))
+      (find (lambda (v) (eq? tag v)) matching-list)))
+  (define (convert-tag tag-pair convert-fn)
+    "Convert TAG-PAIR's value's type using CONVERT-FN."
+    (let ((tag (car tag-pair))
+          (val (cdr tag-pair)))
+      (cons tag (convert-fn val))))
+  (map (lambda (tag)
+         (cond
+          ((check-field tag %tags-with-numbers)
+           (convert-tag tag string->number))
+          (else tag)))
+       bibtex-alist))
 
 (define (parse-bibtex file-port)
   "Parse an opened file into an alist."
