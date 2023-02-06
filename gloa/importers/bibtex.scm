@@ -2,6 +2,9 @@
   #:use-module (ice-9 rdelim)
   #:export (import-bibtex))
 
+(define %tags-with-numbers
+  '(number volume year))
+
 (define (import-bibtex filename)
   "Import a BibTeX file to GLoA by parsing the file into an alist, which is
 returned."
