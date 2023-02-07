@@ -1,6 +1,7 @@
 (define-module (gloa importers bibtex)
   #:use-module (ice-9 rdelim)
   #:use-module (srfi srfi-1)
+  #:declarative? #t
   #:export (import-bibtex))
 
 (define %tags-with-numbers
@@ -9,7 +10,12 @@
 (define (import-bibtex filename)
   "Import a BibTeX file to GLoA by parsing the file into an alist, which is
 returned."
+  ;; (with-input-from-file filename thunk) could work here too
   (let ((bibtex-info  (call-with-input-file filename parse-bibtex)))
+    ;; TODO: Maybe convert dates too? Relevant Guile info manual sections.
+    ;; (guile) Time
+    ;; (guile) SRFI-19 Date
+    ;; Usually the exact day is not important, only year and month.
     (organize-authors (convert-fields bibtex-info))))
 
 (define (organize-authors bibtex-alist)
