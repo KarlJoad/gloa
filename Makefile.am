@@ -19,6 +19,7 @@
 SOURCES =                \
   gloa/hello.scm         \
   gloa/article.scm       \
+  gloa/importers/bibtex.scm \
   gloa.scm
 
 EXTRA_DIST =            \
