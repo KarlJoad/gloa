@@ -4,7 +4,7 @@
   #:use-module (tests utils))
 
 (define %bibtex-filename
-  "test.bib")
+  "tests/test.bib")
 
 (define %expected-bibtex-parse
   '((authors "Kuon, Ian" "Rose, Jonathan")
