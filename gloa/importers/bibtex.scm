@@ -9,9 +9,33 @@
 (define (import-bibtex filename)
   "Import a BibTeX file to GLoA by parsing the file into an alist, which is
 returned."
-  ;; (with-input-from-file filename thunk) could work here too
   (let ((bibtex-info  (call-with-input-file filename parse-bibtex)))
-    (convert-fields bibtex-info)))
+    (organize-authors (convert-fields bibtex-info))))
+
+(define (organize-authors bibtex-alist)
+  "Split up and organize authors in BIBTEX-ALIST."
+  (define author-delimiter " and ")
+  (define (split-authors authors-string)
+    "Split the AUTHORS-STRING into a list of strings of author names"
+    (let ((start 0)
+          (end (string-length authors-string))
+          (split-idx (string-contains-ci authors-string author-delimiter))
+          (authors-list '()))
+      ;; Continue building up the list
+      (while split-idx
+        (set! authors-list (cons (substring/copy authors-string start split-idx) authors-list))
+        (set! start (+ split-idx (string-length author-delimiter)))
+        (set! split-idx (string-contains-ci authors-string author-delimiter start end)))
+      ;; On last author or an article with just one author
+      (set! authors-list (cons (substring/copy authors-string start end) authors-list))
+      ;; Reverse and return the final list, as we cons-d later authors to the front
+      (reverse authors-list)))
+  ;; Make a copy of the original alist, so this update is not done in-place
+  (let ((unmodified-tags (list-copy bibtex-alist))
+        (authors-string (assoc-ref bibtex-alist 'author)))
+    ;; Remove old author string and use new authors list
+    (assoc-set! (assoc-remove! unmodified-tags 'author)
+                'authors (split-authors authors-string))))
 
 (define (convert-fields bibtex-alist)
   (define (check-field field-pair matching-list)
