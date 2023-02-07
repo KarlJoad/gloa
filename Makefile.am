@@ -48,7 +48,8 @@ guile_install_go_files = install-nobase_goDATA
 $(guile_install_go_files): install-nobase_modDATA
 
 TESTS =                \
-  tests/article.scm
+  tests/article.scm    \
+  tests/import-bibtex.scm
 
 TEST_EXTENSIONS = .scm
 SCM_LOG_COMPILER = $(top_builddir)/pre-inst-env $(GUILE)
