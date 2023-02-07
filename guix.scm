@@ -38,7 +38,9 @@
              (gnu packages guile)
              (gnu packages guile-xyz)
              (gnu packages pkg-config)
-             (gnu packages texinfo))
+             (gnu packages texinfo)
+             (gnu packages sqlite)
+             (gnu packages guile))
 
 (define %srcdir
   (or (current-source-directory) "."))
@@ -54,7 +56,7 @@
        (add-after 'unpack 'bootstrap
          (lambda _ (zero? (system* "sh" "bootstrap")))))))
   (native-inputs (list autoconf automake pkg-config texinfo))
-  (inputs (list guile-3.0))
+  (inputs (list guile-3.0 sqlite guile-sqlite3))
   (synopsis "Academic article management")
   (description "Gloa is an academic article manage program written
 in Guile Scheme.")
