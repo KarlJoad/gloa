@@ -22,7 +22,33 @@
     (title . "Measuring the Gap Between FPGAs and ASICs")
     (journal . "IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems")))
 
+(define %no-authors "")
+(define %one-author "firstName MI lastName")
+(define %reverse-one-author "lastName, firstName MI")
+(define %two-authors "first1 last1 and last2, first2")
+(define %many-authors "first1 last1 and first2 last2 and last3, first3 M3 and first4 M4 last4 Jr.")
+
 (with-tests "import-bibtex"
+  (test-equal "empty-author-field"
+    `((authors . ,(list %no-authors)))
+    ((@@ (gloa importers bibtex) organize-authors) `((author . ,%no-authors))))
+
+  (test-equal "single-author-first-last"
+    `((authors . ,(list %one-author)))
+    ((@@ (gloa importers bibtex) organize-authors) `((author . ,%one-author))))
+
+  (test-equal "single-author-last-first"
+    `((authors . ,(list %reverse-one-author)))
+    ((@@ (gloa importers bibtex) organize-authors) `((author . ,%reverse-one-author))))
+
+  (test-equal "two-authors-mixed-first-last"
+    `((authors . ,(list "first1 last1" "last2, first2")))
+    ((@@ (gloa importers bibtex) organize-authors) `((author . ,%two-authors))))
+
+  (test-equal "multi-authors-many-mixed"
+    `((authors . ,(list "first1 last1" "first2 last2" "last3, first3 M3" "first4 M4 last4 Jr.")))
+    ((@@ (gloa importers bibtex) organize-authors) `((author . ,%many-authors))))
+
   (test-equal "import-bibtex-file-to-alist"
     %expected-bibtex-parse
     (import-bibtex %bibtex-filename)))
