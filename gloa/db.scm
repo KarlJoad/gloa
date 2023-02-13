@@ -38,8 +38,10 @@ Requires that db-path actually be an SQLite3 database."
 ;;; From https://gitlab.com/oldiob/inf8601-handout/-/blob/master/handout/db.scm
 
 (define (sqlite-operation db transform sql . bindings)
-  "Perform a database operation on DB according to the SQL provided. The data
-returned by the data base is transformed by TRANSFORM. The SQL string may contain
+  "Perform a database operation on DB according to the SQL provided. By default,
+a list of vectors is returned, i.e. the form (list (vector 'data1 'data2) ...).
+You can transform the elements by providing a TRANSFORM function, which must take
+in a vector and return your desired data type. The SQL string may contain
 identifiers of the form \":identifier\" which are substituted based on the
 \"alists\" provided.
 
