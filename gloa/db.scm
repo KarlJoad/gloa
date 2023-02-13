@@ -5,7 +5,8 @@
             open-db
             close-db
 
-            sqlite-operation))
+            sqlite-operation
+            query*))
 
 (define %GLOA_SCHEMA_FILE "data/schema.sql")
 
@@ -56,3 +57,21 @@ the value of \"table\" in the list of bindings."
     (let ((result (sqlite-map transform stmt)))
       (sqlite-finalize stmt) ; Finalize database operation, ending the transaction
       result)))
+
+;; See (guile) Parameters for how make-parameter works in detail.
+;; In summary, parameters are thread-local unwind-protected dynamic variables,
+;; which may be changed for a local dynamic scope.
+(define current-connection (make-parameter #f))
+
+;; Macro to transform/inline our database queries into a single procedure call.
+(define-syntax query*
+  (syntax-rules ()
+    ;; If we do not specify a transformer function, then we call query* again,
+    ;; using identity as the transformer function. (identity x) |- x.
+    ((_ fmt (key value) ...)
+     (query* identity fmt (key value) ...))
+    ;; If a transformer function is specified, then we use the sqlite-query*
+    ;; function and apply the transform to the data returned from the database.
+    ((_ transformer fmt (key value) ...)
+     (sqlite-operation (current-connection) transformer fmt
+                       `(key . ,value) ...))))
