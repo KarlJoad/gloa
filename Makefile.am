@@ -20,6 +20,7 @@ SOURCES =                \
   gloa/hello.scm         \
   gloa/article.scm       \
   gloa/importers/bibtex.scm \
+  gloa/db.scm            \
   gloa.scm
 
 EXTRA_DIST =            \
@@ -49,7 +50,8 @@ $(guile_install_go_files): install-nobase_modDATA
 
 TESTS =                \
   tests/article.scm    \
-  tests/import-bibtex.scm
+  tests/import-bibtex.scm \
+  tests/db.scm
 
 TEST_EXTENSIONS = .scm
 SCM_LOG_COMPILER = $(top_builddir)/pre-inst-env $(GUILE)
