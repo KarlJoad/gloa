@@ -6,7 +6,8 @@
             close-db
 
             sqlite-operation
-            query*))
+            query*
+            with-db))
 
 (define %GLOA_SCHEMA_FILE "data/schema.sql")
 
@@ -75,3 +76,15 @@ the value of \"table\" in the list of bindings."
     ((_ transformer fmt (key value) ...)
      (sqlite-operation (current-connection) transformer fmt
                        `(key . ,value) ...))))
+
+(define-syntax-rule (with-db uri body body* ...)
+  "Perform actions inside the database specified by URI.
+The body may be any sequence of actions to take on the database. Note that this
+is implemented with a dynamic-wind, so the database may be opened and closed any
+number of times."
+  (dynamic-wind
+    (lambda ()
+      (current-connection (open-db uri)))
+    (lambda () body body* ...)
+    (lambda ()
+      (and=> (current-connection #f) close-db))))
