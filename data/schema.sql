@@ -1,0 +1,7 @@
+PRAGMA foreign_keys = ON;
+
+CREATE TABLE IF NOT EXISTS documents (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    title TEXT NOT NULL,
+    authors TEXT NOT NULL
+);
