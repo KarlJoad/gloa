@@ -11,6 +11,9 @@
 
 (define %GLOA_SCHEMA_FILE "data/schema.sql")
 
+;; See https://www.sqlite.org/capi3ref.html for how SQLite behaves internally,
+;; which directs how guile-sqlite3 and its API behave.
+
 (define (init-db db-path)
   "Create a SQLite3 database with FILENAME and open for reading and writing,
 returning it.
