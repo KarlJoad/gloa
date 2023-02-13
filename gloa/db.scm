@@ -1,7 +1,12 @@
 (define-module (gloa db)
   #:use-module (sqlite3)
-  #:export (open-db
+  #:export (create-db
+            open-db
             close-db))
+
+(define (create-db db-path)
+  "Create a SQLite3 database with FILENAME and open for reading and writing."
+  (sqlite-open db-path (logior SQLITE_OPEN_READWRITE SQLITE_OPEN_CREATE)))
 
 (define (open-db db-path)
   "Open the SQLite3 database at the provided DB-PATH.
