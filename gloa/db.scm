@@ -3,7 +3,9 @@
   #:use-module (ice-9 textual-ports)
   #:export (init-db
             open-db
-            close-db))
+            close-db
+
+            sqlite-operation))
 
 (define %GLOA_SCHEMA_FILE "data/schema.sql")
 
@@ -26,3 +28,31 @@ Requires that db-path actually be an SQLite3 database."
 (define (close-db db)
   "Close the provided DB connection."
   (sqlite-close db))
+
+
+;;; A more useful/higher-level API to interact with the database.
+;;; Thanks oldiob for the code. It makes understanding and using guile-sqlite3
+;;; possible.
+;;; From https://gitlab.com/oldiob/inf8601-handout/-/blob/master/handout/db.scm
+
+(define (sqlite-operation db transform sql . bindings)
+  "Perform a database operation on DB according to the SQL provided. The data
+returned by the data base is transformed by TRANSFORM. The SQL string may contain
+identifiers of the form \":identifier\" which are substituted based on the
+\"alists\" provided.
+
+For example, (sqlite-transaction the-db identity \"DELETE FROM :table\" (table \"theTable\"))
+would delete \"theTable\" by substituting \":table\" from the SQL statement with
+the value of \"table\" in the list of bindings."
+  (let ((stmt (sqlite-prepare db sql))) ; Prepare the database for an operation
+    ;; For each :id, bind :id in the SQL statement to its corresponding value from key+val
+    (for-each (lambda (key+val)
+                (sqlite-bind stmt
+                             (car key+val)
+                             (cdr key+val)))
+              bindings)
+    ;; Take the result we will get from evaluating the SQL with the provided
+    ;; bindings and map the transform function over the result.
+    (let ((result (sqlite-map transform stmt)))
+      (sqlite-finalize stmt) ; Finalize database operation, ending the transaction
+      result)))
