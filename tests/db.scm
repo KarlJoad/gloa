@@ -23,4 +23,12 @@ If the file does not exist, then an exception is raised."
     (test-assert "create-db"
       (begin (testing-db-conn ((@@ (gloa db) create-db) %testing-database-path))
              (testing-db-conn)))
+    (cleanup-test-db (testing-db-conn)))
+
+  (test-group-with-cleanup "db-operations"
+    (test-assert "init-db"
+      (begin
+        (testing-db-conn (init-db %testing-database-path))
+        (testing-db-conn)))
+
     (cleanup-test-db (testing-db-conn))))
