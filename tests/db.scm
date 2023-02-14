@@ -42,4 +42,10 @@ If the file does not exist, then an exception is raised."
         (begin (close-db conn)
                (not ((@@ (sqlite3) db-open?) conn)))))
 
+    ;; Closing the same connection multiple times is allowed, but does nothing
+    (test-assert "close-db-multiple"
+      (let ((conn (open-db %testing-database-path)))
+        (begin (close-db conn)
+               (close-db conn))))
+
     (cleanup-test-db (testing-db-conn))))
