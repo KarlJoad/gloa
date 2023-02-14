@@ -14,6 +14,7 @@ If the file does not exist, then an exception is raised."
   (delete-file %testing-database-path))
 
 (define testing-db-conn (make-parameter #f))
+(define second-db-connection (make-parameter #f))
 
 (with-tests "db-tests"
   (test-error "open-missing-db" 'sqlite-error
@@ -30,5 +31,10 @@ If the file does not exist, then an exception is raised."
       (begin
         (testing-db-conn (init-db %testing-database-path))
         (testing-db-conn)))
+
+    ;; FIXME: Close the 2nd db connection after open completes
+    (test-assert "open-db"
+      (begin (second-db-connection (open-db %testing-database-path))
+             (second-db-connection)))
 
     (cleanup-test-db (testing-db-conn))))
