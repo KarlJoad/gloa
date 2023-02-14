@@ -37,4 +37,9 @@ If the file does not exist, then an exception is raised."
       (begin (second-db-connection (open-db %testing-database-path))
              (second-db-connection)))
 
+    (test-assert "close-db"
+      (let ((conn (open-db %testing-database-path)))
+        (begin (close-db conn)
+               (not ((@@ (sqlite3) db-open?) conn)))))
+
     (cleanup-test-db (testing-db-conn))))
