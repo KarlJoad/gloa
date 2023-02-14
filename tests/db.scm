@@ -13,6 +13,14 @@ If the file does not exist, then an exception is raised."
   (close-db db)
   (delete-file %testing-database-path))
 
+(define testing-db-conn (make-parameter #f))
+
 (with-tests "db-tests"
   (test-error "open-missing-db" 'sqlite-error
-    (open-db "not-present.db")))
+    (open-db "not-present.db"))
+
+  (test-group-with-cleanup "create-db"
+    (test-assert "create-db"
+      (begin (testing-db-conn ((@@ (gloa db) create-db) %testing-database-path))
+             (testing-db-conn)))
+    (cleanup-test-db (testing-db-conn))))
