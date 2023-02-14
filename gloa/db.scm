@@ -14,12 +14,13 @@
 ;; See https://www.sqlite.org/capi3ref.html for how SQLite behaves internally,
 ;; which directs how guile-sqlite3 and its API behave.
 
-(define (init-db db-path)
+(define (create-db db-path)
   "Create a SQLite3 database with FILENAME and open for reading and writing,
-returning it.
-Initialize the database with the schema in %GLOA_SCHEMA_FILE."
-  (define (create-db db-path)
-    (sqlite-open db-path (logior SQLITE_OPEN_READWRITE SQLITE_OPEN_CREATE)))
+returning it."
+  (sqlite-open db-path (logior SQLITE_OPEN_READWRITE SQLITE_OPEN_CREATE)))
+
+(define (init-db db-path)
+  "Initialize the database with the schema in %GLOA_SCHEMA_FILE."
   (let ((db (create-db db-path)))
     (sqlite-exec db (call-with-input-file %GLOA_SCHEMA_FILE get-string-all))
     db))
