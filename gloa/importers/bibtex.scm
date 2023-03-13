@@ -37,6 +37,8 @@
 ;; Match on either multiple tags with commas between them, or a single tag.
 (define-peg-pattern tags all (+ (and tag tag-separator (* (? WS)))))
 
+(define-peg-pattern entry-type all (* (or (range #\a #\z) (range #\A #\Z))))
+
 (define (import-bibtex filename)
   "Import a BibTeX file to GLoA by parsing the file into an alist, which is
 returned."
