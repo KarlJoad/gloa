@@ -1,4 +1,5 @@
 (define-module (gloa importers bibtex)
+  #:use-module (ice-9 peg)
   #:use-module (ice-9 rdelim)
   #:use-module (srfi srfi-1)
   #:declarative? #t
@@ -6,6 +7,22 @@
 
 (define %tags-with-numbers
   '(number volume year))
+
+;; A tag is a BibTeX value of the form tagName={tagVal}, or tagName=tagVal, or
+;; tagName="tagVal"
+(define-peg-pattern tag all (and tag-name tag-equals tag-value))
+
+;; A tag's name is only letters, "[a-zA-Z]+". Hold onto the tag-name field too.
+(define-peg-pattern tag-name all (* (or (range #\a #\z) (range #\A #\Z))))
+
+(define-peg-pattern tag-equals none "=")
+(define-peg-pattern tag-value-delimiters none (or "{" "}"))
+
+;; A tag's value is letters, numbers, punctuation, anything, but there must be
+;; at least one character delimited by the tag value's delimiter characters
+(define-peg-pattern tag-value all (and (ignore tag-value-delimiters)
+                                       (* (and (not-followed-by tag-value-delimiters) peg-any))
+                                       (ignore tag-value-delimiters)))
 
 (define (import-bibtex filename)
   "Import a BibTeX file to GLoA by parsing the file into an alist, which is
