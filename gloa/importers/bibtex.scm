@@ -51,7 +51,7 @@
 ;; A BibTeX file may be composed of multiple entries, and we parse until we reach
 ;; the end of the file with the not-followed-by-clause. See the passwd example
 ;; in (guile) PEG Tutorial for a more in-depth explanation.
-(define-peg-pattern entries body (and (* entry) (not-followed-by peg-any)))
+(define-peg-pattern entries body (* (or entry WS)))
 
 (define (import-bibtex filename)
   "Import a BibTeX file to GLoA by parsing the file into an alist, which is
