@@ -26,9 +26,13 @@
 
 ;; A tag's value is letters, numbers, punctuation, anything, but there must be
 ;; at least one character delimited by the tag value's delimiter characters
-(define-peg-pattern tag-value all (and (ignore tag-value-delimiters)
-                                       (* (and (not-followed-by tag-value-delimiters) peg-any))
-                                       (ignore tag-value-delimiters)))
+(define-peg-pattern tag-value all (or tag-value-braces tag-value-quotes))
+(define-peg-pattern tag-value-braces body (and (ignore tag-value-delimiters)
+                                              (* (and (not-followed-by tag-value-delimiters) peg-any))
+                                              (ignore tag-value-delimiters)))
+(define-peg-pattern tag-value-quotes body (and (ignore "\"")
+                                              (* (and (not-followed-by "\"") peg-any))
+                                              (ignore "\"")))
 
 ;; Multiple tags for a single record are separated by commas. The none removes
 ;; the matched character, which we do not want anyways.
