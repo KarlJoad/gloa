@@ -8,6 +8,10 @@
 (define %tags-with-numbers
   '(number volume year))
 
+;; Newlines can be \n or \r\n, depending on the underlying encoding of the file.
+;; This definition of newline allows for either to be recognized.
+(define-peg-pattern NL none (or "\n" "\r\n"))
+
 ;; A tag is a BibTeX value of the form tagName={tagVal}, or tagName=tagVal, or
 ;; tagName="tagVal"
 (define-peg-pattern tag all (and tag-name tag-equals tag-value))
