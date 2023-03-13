@@ -15,7 +15,8 @@
 
 ;; A tag is a BibTeX value of the form tagName={tagVal}, or tagName=tagVal, or
 ;; tagName="tagVal"
-(define-peg-pattern tag all (and tag-name tag-equals tag-value))
+(define-peg-pattern tag all (and (* (ignore WS))
+                                 tag-name tag-equals tag-value))
 
 ;; A tag's name is only letters, "[a-zA-Z]+". Hold onto the tag-name field too.
 (define-peg-pattern tag-name all (* (or (range #\a #\z) (range #\A #\Z))))
