@@ -15,8 +15,7 @@
 
 ;; A tag is a BibTeX value of the form tagName={tagVal}, or tagName=tagVal, or
 ;; tagName="tagVal"
-(define-peg-pattern tag all (and (* (ignore WS))
-                                 tag-name tag-equals tag-value))
+(define-peg-pattern tag all (and tag-name tag-equals tag-value))
 
 ;; A tag's name is only letters, "[a-zA-Z]+". Hold onto the tag-name field too.
 (define-peg-pattern tag-name all (* (or (range #\a #\z) (range #\A #\Z))))
@@ -39,7 +38,7 @@
 (define-peg-pattern tag-separator none ",")
 
 ;; Match on either multiple tags with commas between them, or a single tag.
-(define-peg-pattern tags all (+ (and tag tag-separator (* (? WS)))))
+(define-peg-pattern tags body (+ (and (* WS) tag tag-separator (* WS))))
 
 (define-peg-pattern entry-type all (* (or (range #\a #\z) (range #\A #\Z))))
 (define-peg-pattern entry-id all (* (or (range #\a #\z) (range #\A #\Z) (range #\0 #\9)
