@@ -11,6 +11,7 @@
 ;; Newlines can be \n or \r\n, depending on the underlying encoding of the file.
 ;; This definition of newline allows for either to be recognized.
 (define-peg-pattern NL none (or "\n" "\r\n"))
+(define-peg-pattern WS none (or NL " "))
 
 ;; A tag is a BibTeX value of the form tagName={tagVal}, or tagName=tagVal, or
 ;; tagName="tagVal"
