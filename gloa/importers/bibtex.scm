@@ -1,6 +1,7 @@
 (define-module (gloa importers bibtex)
   #:use-module (ice-9 peg)
   #:use-module (ice-9 rdelim)
+  #:use-module (ice-9 textual-ports)
   #:use-module (srfi srfi-1)
   #:declarative? #t
   #:export (import-bibtex))
@@ -56,7 +57,7 @@
   "Import a BibTeX file to GLoA by parsing the file into an alist, which is
 returned."
   ;; (with-input-from-file filename thunk) could work here too
-  (let ((bibtex-info  (call-with-input-file filename parse-bibtex)))
+  (let ((bibtex-info (call-with-input-file filename parse-bibtex)))
     ;; TODO: Maybe convert dates too? Relevant Guile info manual sections.
     ;; (guile) Time
     ;; (guile) SRFI-19 Date
@@ -108,23 +109,8 @@ returned."
 
 (define (parse-bibtex file-port)
   "Parse an opened file into an alist."
-  (define trimming-character-set (char-set-union char-set:whitespace char-set:punctuation))
-  (define (split-tag-string s) (string-split s #\=))
-  (define (create-tag-pair tag-as-string)
-    (cons (string->symbol (car tag-as-string))
-          (string-trim (string-trim (cadr tag-as-string) trimming-character-set))))
-  (with-input-from-port file-port
-    (lambda ()
-      ;; Use let* because reading must be properly sequenced
-      (let* ((article-type (string-trim-both (read-delimited "{") trimming-character-set))
-             (article-id   (string-trim-both (read-line) trimming-character-set))
-             (tags-list    (read-bibtex-body)))
-        ;; Convert list of tags to alist. Map tag -> entry
-        `((type . ,article-type)
-          (id . ,article-id)
-          ,@(map (lambda (s) (create-tag-pair (split-tag-string s)))
-             ;; Remove leading/trailing whitespace and trailing punctuation
-             (map (lambda (s) (string-trim-both s trimming-character-set)) tags-list)))))))
+  (let ((file-contents (call-with-port file-port get-string-all)))
+    (peg:tree (match-pattern entries file-contents))))
 
 (define (read-bibtex-body)
   "Read the body of tags for a BibTeX entry, returning a list of strings.
