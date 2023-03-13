@@ -43,7 +43,7 @@
 
 (define-peg-pattern entry-type all (* (or (range #\a #\z) (range #\A #\Z))))
 (define-peg-pattern entry-id all (* (or (range #\a #\z) (range #\A #\Z) (range #\0 #\9)
-                                        "-" "_")))
+                                        "-" "_" "/" ".")))
 (define-peg-pattern entry all (and (ignore "@") entry-type (ignore "{") entry-id (ignore ",") (? NL)
                                    tags
                                    (ignore "}")))
