@@ -24,6 +24,14 @@
                                        (* (and (not-followed-by tag-value-delimiters) peg-any))
                                        (ignore tag-value-delimiters)))
 
+;; Multiple tags for a single record are separated by commas. The none removes
+;; the matched character, which we do not want anyways.
+(define-peg-pattern tag-separator none ",")
+
+;; Match on either multiple tags with commas between them, or a single tag.
+(define-peg-pattern tags all (or (+ (and tag tag-separator))
+                                 tag))
+
 (define (import-bibtex filename)
   "Import a BibTeX file to GLoA by parsing the file into an alist, which is
 returned."
