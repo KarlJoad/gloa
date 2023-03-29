@@ -100,10 +100,17 @@ returned."
     (let ((tag (car tag-pair))
           (val (cdr tag-pair)))
       (cons tag (convert-fn val))))
+  (define (split-commas str)
+    "Split STR based on commas into a list of strings."
+    (let ((split (string-split str (or #\, #\;))))
+      (map string-trim-both split)))
+
   (map (lambda (tag)
          (cond
           ((check-field tag %tags-with-numbers)
            (convert-tag tag string->number))
+          ((check-field tag '(keywords))
+           (convert-tag tag split-commas))
           (else tag)))
        bibtex-alist))
 
