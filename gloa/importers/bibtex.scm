@@ -39,7 +39,7 @@
 (define-peg-pattern tag-separator none ",")
 
 ;; Match on either multiple tags with commas between them, or a single tag.
-(define-peg-pattern tags body (+ (and (* WS) tag tag-separator (* WS))))
+(define-peg-pattern tags all (+ (and (* WS) tag tag-separator (* WS))))
 
 (define-peg-pattern entry-type all (* (or (range #\a #\z) (range #\A #\Z))))
 (define-peg-pattern entry-id all (* (or (range #\a #\z) (range #\A #\Z) (range #\0 #\9)
