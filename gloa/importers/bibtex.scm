@@ -66,7 +66,10 @@ returned."
     (organize-authors (convert-fields bibtex-info))))
 
 (define (organize-authors bibtex-alist)
-  "Split up and organize authors in BIBTEX-ALIST."
+  "Split up and organize authors in BIBTEX-ALIST.
+Returns a new alist where the author key is undefined but the authors tag is
+defined as the list of author names as a string from the BIBTEX-ALIST input to
+this function."
   (define author-delimiter " and ")
   (define (split-authors authors-string)
     "Split the AUTHORS-STRING into a list of strings of author names"
@@ -91,6 +94,7 @@ returned."
                 'authors (split-authors authors-string))))
 
 (define (convert-fields bibtex-alist)
+  "Perform type-conversions on entries in BIBTEX-ALIST."
   (define (check-field field-pair matching-list)
     "Check if the FIELD-PAIR (tag . val) has a tag in MATCHING-LIST."
     (let ((tag (car field-pair))
