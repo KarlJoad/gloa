@@ -116,9 +116,13 @@ returned."
        bibtex-alist))
 
 (define (parse-bibtex file-port)
-  "Parse an opened file into an alist."
-  (let ((file-contents (call-with-port file-port get-string-all)))
-    (peg:tree (match-pattern entries file-contents))))
+  "Parse an opened BibTeX file into an alist of symbols to strings."
+  (let* ((file-contents (call-with-port file-port get-string-all))
+         (parse-tree (peg:tree (match-pattern entries file-contents))))
+    ;; type & ID can use first because they are singleton lists.
+    `((type . ,(first (assoc-ref parse-tree 'entry-type)))
+      (id . ,(first (assoc-ref parse-tree 'entry-id)))
+      ,@(filter-map convert-tag (assoc-ref parse-tree 'tags)))))
 
 (define (convert-tag tag)
   "Convert a TAG from the PEG parser into a cons-pair."
