@@ -1,5 +1,6 @@
 (define-module (gloa importers bibtex)
   #:use-module (ice-9 peg)
+  #:use-module (ice-9 match)
   #:use-module (ice-9 rdelim)
   #:use-module (ice-9 textual-ports)
   #:use-module (srfi srfi-1)
@@ -118,6 +119,16 @@ returned."
   "Parse an opened file into an alist."
   (let ((file-contents (call-with-port file-port get-string-all)))
     (peg:tree (match-pattern entries file-contents))))
+
+(define (convert-tag tag)
+  "Convert a TAG from the PEG parser into a cons-pair."
+  (match tag
+    ;; This is what we usually expect, tags should usually have values.
+    (`(tag (tag-name ,name) (tag-value ,val)) (cons (string->symbol name) val))
+    ;; This entry is generated when the tag has no value(s) attached to it.
+    (`(tag (tag-name ,name) tag-value) (cons (string->symbol name) ""))
+    ;; The fall-through case.
+    (_ #f)))
 
 (define (read-bibtex-body)
   "Read the body of tags for a BibTeX entry, returning a list of strings.
