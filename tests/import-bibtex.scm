@@ -1,5 +1,6 @@
 (define-module (test-import-bibtex)
   #:use-module (gloa importers bibtex)
+  #:use-module (srfi srfi-1)
   #:use-module (srfi srfi-64)
   #:use-module (tests utils))
 
@@ -28,27 +29,37 @@
 (define %two-authors "first1 last1 and last2, first2")
 (define %many-authors "first1 last1 and first2 last2 and last3, first3 M3 and first4 M4 last4 Jr.")
 
+(define-syntax-rule (test-lset= test-name equality-fn expected expr)
+  "Use `lset=' and the provided EQUALITY-FN to perform an equality check of
+EXPECTED and EXPR.
+
+This is particularly useful for alists, especially when `equal?' is the equality
+function used, as this equality is NOT sensitive to the ordering of entries/elements
+within the alist."
+  (test-assert test-name
+    (lset= equality-fn expected expr)))
+
 (with-tests "import-bibtex"
-  (test-equal "empty-author-field"
+  (test-lset= "empty-author-field" equal?
     `((authors . ,(list %no-authors)))
     ((@@ (gloa importers bibtex) organize-authors) `((author . ,%no-authors))))
 
-  (test-equal "single-author-first-last"
+  (test-lset= "single-author-first-last" equal?
     `((authors . ,(list %one-author)))
     ((@@ (gloa importers bibtex) organize-authors) `((author . ,%one-author))))
 
-  (test-equal "single-author-last-first"
+  (test-lset= "single-author-last-first" equal?
     `((authors . ,(list %reverse-one-author)))
     ((@@ (gloa importers bibtex) organize-authors) `((author . ,%reverse-one-author))))
 
-  (test-equal "two-authors-mixed-first-last"
+  (test-lset= "two-authors-mixed-first-last" equal?
     `((authors . ,(list "first1 last1" "last2, first2")))
     ((@@ (gloa importers bibtex) organize-authors) `((author . ,%two-authors))))
 
-  (test-equal "multi-authors-many-mixed"
+  (test-lset= "multi-authors-many-mixed" equal?
     `((authors . ,(list "first1 last1" "first2 last2" "last3, first3 M3" "first4 M4 last4 Jr.")))
     ((@@ (gloa importers bibtex) organize-authors) `((author . ,%many-authors))))
 
-  (test-equal "import-bibtex-file-to-alist"
+  (test-lset= "import-bibtex-file-to-alist" equal?
     %expected-bibtex-parse
     (import-bibtex %bibtex-filename)))

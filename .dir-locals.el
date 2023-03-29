@@ -22,6 +22,7 @@
    (eval . (put 'test-equalm 'scheme-indent-function 1))
    (eval . (put 'test-equal 'scheme-indent-function 1))
    (eval . (put 'test-eq 'scheme-indent-function 1))
+   (eval . (put 'test-lset= 'scheme-indent-function 1))
    (eval . (put 'call-with-input-string 'scheme-indent-function 1))
    (eval . (put 'call-with-port 'scheme-indent-function 1))
    (eval . (put 'guard 'scheme-indent-function 1))
