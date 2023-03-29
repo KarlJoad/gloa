@@ -7,7 +7,7 @@
      (eval . (add-to-list 'completion-ignored-extensions ".go"))
 
      ;; Emacs-Guix
-     (eval . (setq-local guix-directory
+     (eval . (setq-local gloa-directory
                          (locate-dominating-file default-directory
                                                  ".dir-locals.el")))))
 
