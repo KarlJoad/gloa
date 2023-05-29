@@ -11,3 +11,10 @@ CREATE TABLE IF NOT EXISTS authors (
     name TEXT NOT NULL COLLATE NOCASE,
     UNIQUE(name)
 );
+
+CREATE TABLE documents_authors_link (
+    id INTEGER PRIMARY KEY NOT NULL,
+    document INTEGER NOT NULL,
+    author INTEGER NOT NULL,
+    UNIQUE(document, author) -- Pairing of document and author must be unique
+);
