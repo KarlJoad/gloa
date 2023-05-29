@@ -13,4 +13,12 @@ AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([pre-inst-env], [chmod +x pre-inst-env])
 AC_CONFIG_FILES([scripts/gloa], [chmod +x scripts/gloa])
 
+dnl Installation directories for .scm and .go files.
+gloa_prefix="`eval echo $prefix | sed -e"s|NONE|/usr/local|g"`"
+gloa_libdir="`eval echo $libdir | sed -e"s|NONE|$gloa_prefix|g"`"
+guilemoduledir="`eval echo ${datarootdir}/guile/site/$GUILE_EFFECTIVE_VERSION | sed -e "s|NONE|$gloa_prefix|g"`"
+guileobjectdir="`eval echo ${libdir}/guile/$GUILE_EFFECTIVE_VERSION/site-ccache | sed -e "s|NONE|$gloa_prefix|g"`"
+AC_SUBST([guilemoduledir])
+AC_SUBST([guileobjectdir])
+
 AC_OUTPUT
