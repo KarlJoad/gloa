@@ -1,7 +1,7 @@
 AC_INIT([Gloa], [0.1])
 AC_CONFIG_SRCDIR([gloa.scm])
 AC_CONFIG_AUX_DIR([build-aux])
-AM_INIT_AUTOMAKE([color-tests -Wall -Werror foreign])
+AM_INIT_AUTOMAKE([color-tests parallel-tests -Wall -Werror foreign])
 
 GUILE_PKG([3.0])
 GUILE_PROGS
