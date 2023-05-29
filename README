@@ -12,7 +12,7 @@ $ ./bootstrap && ./configure && make
 #+end_src
 
 * Running with Installing
-This works by adding ~gloa/scripts~ to the front of ~$PATH~, so we find the ~gloa~ script first.
+This works by adding ~gloa/scripts~ to the front of ~$PATH~, so we find the ~gloa~ script first and setting the relevant module load paths (~GUILE_LOAD_PATH~ and ~GUILE_LOAD_COMPILED_PATH~) to the root of the project to the front of the list.
 #+begin_src sh
 $ ./pre-inst-env gloa --help
 #+end_src
