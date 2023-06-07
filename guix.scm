@@ -32,6 +32,7 @@
              (guix licenses)
              (guix utils)
              (guix gexp)
+             (guix git-download)
              (guix build-system gnu)
              (gnu packages)
              (gnu packages autotools)
@@ -42,13 +43,17 @@
              (gnu packages sqlite)
              (gnu packages guile))
 
-(define %srcdir
-  (or (current-source-directory) "."))
+(define vcs-file?
+  ;; Return true if the given file is under version control.
+  (or (git-predicate (current-source-directory))
+      (const #t)))                                ;not in a Git checkout
 
 (package
   (name "gloa")
   (version "0.0.0")
-  (source (local-file (dirname %srcdir) #:recursive? #t))
+  (source (local-file "." "gloa-checkout"
+                      #:recursive? #t
+                      #:select? vcs-file?))
   (build-system gnu-build-system)
   (arguments
    '(#:phases
