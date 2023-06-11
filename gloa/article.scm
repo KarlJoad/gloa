@@ -4,10 +4,14 @@
             make-article
             article?
             article-title
-            article-authors))
+            article-authors
+            serialize-article-authors))
 
 (define-record-type <article>
   (make-article title authors)
   article?
   (title article-title)
   (authors article-authors))
+
+(define (serialize-article-authors author-list)
+  (string-join author-list " and "))
