@@ -18,6 +18,7 @@
 
 SOURCES =                \
   gloa/hello.scm         \
+  gloa/utils.scm         \
   gloa/article.scm       \
   gloa/importers/bibtex.scm \
   gloa/db.scm            \
