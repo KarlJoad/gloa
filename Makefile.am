@@ -21,6 +21,7 @@ SOURCES =                \
   gloa/article.scm       \
   gloa/importers/bibtex.scm \
   gloa/db.scm            \
+  gloa/db/utils.scm      \
   gloa/db/add.scm        \
   gloa.scm
 
