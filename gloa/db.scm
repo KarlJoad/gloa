@@ -79,6 +79,8 @@ the value of \"table\" in the list of bindings."
      (query* identity fmt (key value) ...))
     ;; If a transformer function is specified, then we use the sqlite-query*
     ;; function and apply the transform to the data returned from the database.
+    ;; Data is returned as a list of vectors, where each element in the list is
+    ;; a vector of data (a row) from the database's tables and SQL query.
     ((_ transformer fmt (key value) ...)
      (sqlite-operation (current-connection) transformer fmt
                        `(key . ,value) ...))))
