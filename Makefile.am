@@ -25,6 +25,7 @@ SOURCES =                \
   gloa/db/utils.scm      \
   gloa/db/add.scm        \
   gloa/db/remove.scm     \
+  gloa/db/search.scm     \
   gloa.scm
 
 EXTRA_DIST =            \
