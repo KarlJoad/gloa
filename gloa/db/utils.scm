@@ -5,7 +5,6 @@
   #:use-module (srfi srfi-1)
   #:export (object-present?
             article-present?
-            vector->article
             to-id))
 
 (define (object-present? db-path table-name col-filter search-param)
@@ -29,14 +28,6 @@
        ;; FIXME: Also check the link table to make sure proper links exist.
        ;; (object-present? db-path "documents_author_link" "id")
        ))
-
-(define (vector->article vec)
-  "Convert a vector representing a row from the returned SQLite query to an
-article object."
-  (let ((article-id (vector-ref vec 0)) ;; Drop the ID of the entry
-        (article-title (vector-ref vec 1))
-        (authors-list (deserialize-article-authors (vector-ref vec 2))))
-    (make-article article-title authors-list)))
 
 ;; By uniqueness, we expect just one ID back
 (define (to-id res)
