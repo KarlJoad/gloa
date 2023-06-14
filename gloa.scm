@@ -23,6 +23,20 @@
        (format #f "~a/.cache" (getenv "HOME")))
    "/gloa/gloa.sqlite"))
 
+(define (%default-user-config-location)
+  "Location of user's configuration of Gloa.
+Searches for @code{$XDG_CONFIG_HOME/gloa/init.scm} first, if that is not found,
+Gloa falls back to @code{$HOME/.gloa.d/init.scm}, and if that fails,
+@code{$HOME/.gloa.scm} is searched for.
+If none of those are found, no configuration changes to Gloa occur."
+  (let ((config-dot-d (format #f "~a/.gloa.d" (getenv "HOME")))
+        (dot-config (format #f "~a/.gloa.scm" (getenv "HOME"))))
+    (cond ((getenv "XDG_CONFIG_HOME")
+           (string-append (getenv "XDG_CONFIG_HOME") "/gloa/init.scm"))
+          ((and (file-exists? config-dot-d) (file-is-directory? config-dot-d))
+           (format #f "~a/init.scm" config-dot-d))
+          (#t dot-config))))
+
 (define* (gloa-main arg0 . args)
   ;; Add gloa site directory to Guile's load path so that user's can
   ;; easily import their own modules.
