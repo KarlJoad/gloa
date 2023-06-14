@@ -4,6 +4,14 @@
   #:use-module (gloa article)
   #:export (add-to-db))
 
+(define (add-author db-path author)
+  "Add AUTHOR to database at DB-PATH if that author does not already exist.
+If that author already exists, then do nothing."
+  (unless (object-present? db-path "authors" "name" author)
+    (with-db db-path
+      (query* "INSERT INTO authors(name) VALUES (:author)"
+              (author author)))))
+
 ;; TODO: Make generic. Have <article> type contain information about how to
 ;; serialize to the database's schema. Perhaps use GOOPS?
 (define (add-to-db db-path article-info article-pdf-path)
