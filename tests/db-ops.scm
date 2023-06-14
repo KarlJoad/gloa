@@ -32,4 +32,8 @@ If the file does not exist, then an exception is raised."
         (find-article-by-title %test-database-path %test-article-simple))
       %test-article-simple)
 
+    (test-equal "search-db"
+      (find-article-by-title %test-database-path %test-article-simple)
+      %test-article-simple)
+
     (remove-test-db %test-database-path)))
