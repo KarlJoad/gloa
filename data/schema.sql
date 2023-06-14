@@ -16,7 +16,9 @@ CREATE TABLE IF NOT EXISTS authors (
 DROP TABLE IF EXISTS documents_authors_link;
 CREATE TABLE documents_authors_link (
     id INTEGER PRIMARY KEY NOT NULL,
-    document INTEGER NOT NULL,
-    author INTEGER NOT NULL,
-    UNIQUE(document, author) -- Pairing of document and author must be unique
+    author_id INTEGER NOT NULL,
+    document_id INTEGER NOT NULL,
+    FOREIGN KEY(author_id) REFERENCES authors(id),
+    FOREIGN KEY(document_id) REFERENCES documents(id),
+    UNIQUE(author_id,document_id) -- Pairing of document and author must be unique
 );
