@@ -5,7 +5,8 @@
   #:use-module (srfi srfi-1)
   #:export (object-present?
             article-present?
-            vector->article))
+            vector->article
+            to-id))
 
 (define (object-present? db-path table-name col-filter search-param)
   "Attempt to find SEARCH-PARAM in TABLE-NAME at the database in DB-PATH. Return
@@ -36,3 +37,10 @@ article object."
         (article-title (vector-ref vec 1))
         (authors-list (deserialize-article-authors (vector-ref vec 2))))
     (make-article article-title authors-list)))
+
+;; By uniqueness, we expect just one ID back
+(define (to-id res)
+  "Convert a SINGLE-VALUED vector to a single integer.
+This is intended for converting an ID returned from a database query to
+something that can be used elsewhere."
+  (vector-ref res 0))

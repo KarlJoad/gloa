@@ -23,9 +23,6 @@ path."
               (aid auth-id)
               (doc doc-id))))
 
-  ;; By uniqueness, we expect just one ID back
-  (define (to-id res) (vector-ref res 0))
-
   (if (article-present? db-path article-info)
       ;; FIXME: Convert these formats into logging statements
       (format #t "Document titled ~s already present in database. Not adding!~%"
