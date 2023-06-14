@@ -17,13 +17,38 @@ If that author already exists, then do nothing."
 (define (add-to-db db-path article-info article-pdf-path)
   "Add ARTICLE-INFO metadata to the database at DB-PATH, noting the article PDF's
 path."
+  (define (link-doc-author doc-id auth-id)
+    (with-db db-path
+      (query* "INSERT INTO documents_authors_link (author_id, document_id) VALUES (:aid, :doc)"
+              (aid auth-id)
+              (doc doc-id))))
+
+  ;; By uniqueness, we expect just one ID back
+  (define (to-id res) (vector-ref res 0))
+
   (if (article-present? db-path article-info)
       ;; FIXME: Convert these formats into logging statements
-      (format #t "~s already present in database. Not adding!~%"
+      (format #t "Document titled ~s already present in database. Not adding!~%"
               (article-title article-info))
       (begin
         (format #t "~s not in database. Adding!~%" (article-title article-info))
         (with-db db-path
-          (query* "INSERT INTO documents (title, authors) VALUES(:title, :authors)"
-                  (title (article-title article-info))
-                  (authors (serialize-article-authors article-info)))))))
+          (query* "INSERT INTO documents(title) VALUES (:title)"
+                  (title (article-title article-info)))
+          (let ((doc-id (list-ref
+                         (query* to-id "SELECT id FROM documents WHERE title = :title"
+                                 (title (article-title article-info)))
+                         0)))
+            ;; Add each author to authors if new author. Then link doc and authors
+            (for-each
+             (lambda (author)
+               (begin
+                 (add-author db-path author)
+                 (link-doc-author
+                  doc-id
+                  (list-ref ;; list-ref because we expect only 1 ID back anyways.
+                   (with-db db-path
+                     (query* to-id "SELECT id FROM authors WHERE name = :author"
+                             (author author)))
+                   0))))
+                      (article-authors article-info)))))))
