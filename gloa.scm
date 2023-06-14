@@ -16,6 +16,13 @@
              (file-exists? user-config))
     (load user-config)))
 
+(define (%default-db-location)
+  "The default location of Gloa's tracking database."
+  (string-append
+   (or (getenv "XDG_CACHE_HOME")
+       (format #f "~a/.cache" (getenv "HOME")))
+   "/gloa/gloa.sqlite"))
+
 (define* (gloa-main arg0 . args)
   ;; Add gloa site directory to Guile's load path so that user's can
   ;; easily import their own modules.
