@@ -2,6 +2,7 @@
   #:use-module (gloa db)
   #:use-module (gloa db search)
   #:use-module (gloa article)
+  #:use-module (srfi srfi-1)
   #:export (object-present?
             article-present?
             vector->article))
@@ -19,9 +20,14 @@
 
 (define (article-present? db-path article)
   "Determine if ARTICLE is already present in the database at DB-PATH."
-  (not (equal? 0
-               (length
-                (find-article db-path article)))))
+  (and (object-present? db-path "documents" "title" (article-title article))
+       (every (lambda (b) (eq? b #t))
+               (map (lambda (author)
+                      (object-present? db-path "authors" "name" author))
+                    (article-authors article)))
+       ;; FIXME: Also check the link table to make sure proper links exist.
+       ;; (object-present? db-path "documents_author_link" "id")
+       ))
 
 (define (vector->article vec)
   "Convert a vector representing a row from the returned SQLite query to an
