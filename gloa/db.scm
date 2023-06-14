@@ -72,6 +72,8 @@ the value of \"table\" in the list of bindings."
 
 ;; Macro to transform/inline our database queries into a single procedure call.
 (define-syntax query*
+  ;; FIXME: Throw an error if query* is used outside of a with-db context.
+  ;; See (guix monads) for an idea on how to implement this.
   (syntax-rules ()
     ;; If we do not specify a transformer function, then we call query* again,
     ;; using identity as the transformer function. (identity x) |- x.
