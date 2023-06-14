@@ -2,8 +2,20 @@
   #:use-module (gloa db)
   #:use-module (gloa db search)
   #:use-module (gloa article)
-  #:export (article-present?
+  #:export (object-present?
+            article-present?
             vector->article))
+
+(define (object-present? db-path table-name col-filter search-param)
+  "Attempt to find SEARCH-PARAM in TABLE-NAME at the database in DB-PATH. Return
+@code{#t} if there are any matches. Otherwise, return @code{#f}."
+  (not (zero?
+        (length
+         (with-db db-path
+           (query* (format #f "SELECT * FROM ~a WHERE ~a = :thing"
+                           table-name
+                           col-filter)
+                   (thing search-param)))))))
 
 (define (article-present? db-path article)
   "Determine if ARTICLE is already present in the database at DB-PATH."
