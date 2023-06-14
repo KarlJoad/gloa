@@ -4,7 +4,7 @@
   #:declarative? #f
   #:export (gloa-main))
 
-(define user-config
+(define guile-user-config
   ;; The user's personal Guile REPL configuration.
   (and=> (getenv "HOME")
          (lambda (home)
@@ -12,9 +12,9 @@
 
 (define (set-user-module)
   (when (and ;; (not (assoc-ref opts 'ignore-dot-guile?)) ;; TODO: CLI flag for ignoring .guile
-             user-config
-             (file-exists? user-config))
-    (load user-config)))
+             guile-user-config
+             (file-exists? guile-user-config))
+    (load guile-user-config)))
 
 (define (%default-db-location)
   "The default location of Gloa's tracking database."
