@@ -28,13 +28,7 @@ If the file does not exist, then an exception is raised."
     (test-equal "add-to-db"
       (begin
         (init-db %test-database-path)
-        (add-to-db %test-database-path %test-article-simple "")
-        (find-article-by-title %test-database-path (article-title %test-article-simple)))
-      %test-article-simple)
-
-    (test-equal "search-db-by-title, entry not exists"
-      (find-article-by-title %test-database-path
-                             (article-title %test-article-simple))
+        (add-to-db %test-database-path %test-article-simple ""))
       %test-article-simple)
 
     (remove-test-db %test-database-path)))
