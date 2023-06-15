@@ -1,13 +1,17 @@
 (define-module (gloa db)
   #:use-module (sqlite3)
   #:use-module (ice-9 textual-ports)
+  #:use-module (ice-9 exceptions)
   #:export (init-db
             open-db
             close-db
 
             sqlite-operation
             query*
-            with-db))
+            with-db
+
+            make-no-sql-match-exception
+            no-sql-match-exception?))
 
 (define %GLOA_SCHEMA_FILE "data/schema.sql")
 
@@ -98,3 +102,9 @@ number of times."
     (lambda () body body* ...)
     (lambda ()
       (and=> (current-connection #f) close-db))))
+
+(define-exception-type &no-sql-match-exception &external-error
+  make-no-sql-match-exception
+  no-sql-match-exception?
+  ;; (reason no-sql-match-exception-reason)
+  )
