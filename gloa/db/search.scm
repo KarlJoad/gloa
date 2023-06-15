@@ -5,11 +5,10 @@
   #:export (find-article-by-title))
 
 ;; FIXME: Harden these functions and
-(define (find-article-by-title db-path article)
+(define (find-article-by-title db-path title)
   "Attempt to find ARTICLE. If the article does not exist, return #f."
   (with-db db-path
-    (let* ((title (article-title article))
-           (doc-id (list-ref
+    (let* ((doc-id (list-ref
                     (query* to-id "SELECT * FROM documents WHERE title = :title"
                             (title title))
                     0))
