@@ -5,7 +5,8 @@
   #:use-module (srfi srfi-1)
   #:export (object-present?
             article-present?
-            to-id))
+            to-id
+            list->sql))
 
 (define (object-present? db-path table-name col-filter search-param)
   "Attempt to find SEARCH-PARAM in TABLE-NAME at the database in DB-PATH. Return
@@ -35,3 +36,10 @@
 This is intended for converting an ID returned from a database query to
 something that can be used elsewhere."
   (vector-ref res 0))
+
+(define (list->sql lst)
+  "Convert a Scheme list to a SQL list that can be used with IN operators."
+  (let ((escaped-string-list (map (lambda (s)
+                                    (format #f "'~a'" s))
+                                  lst)))
+    (string-append "(" (string-join escaped-string-list ",") ")")))
