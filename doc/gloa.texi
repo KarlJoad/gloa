@@ -121,6 +121,24 @@ to @file{$HOME/.cache/gloa/gloa.sqlite}.
 Searching for documents is one of the most important functions of Gloa,
 as people tend to accumulate @b{many} documents, and finding them can
 become difficult.
+
+@menu
+* Search Terms::                Keywords that Gloa will understand.
+@end menu
+
+@node Search Terms
+@section Search Terms
+
+A selection of search terms are soft-reserved as keywords.  These
+include:
+@itemize
+@item
+@code{title}: The title of the document.
+@item
+@code{author}: The author of the document.  This keyword can be used
+multiple times to specify multiple authors.
+@end itemize
+
 @node Exporting
 @chapter Exporting
 
