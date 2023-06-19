@@ -40,11 +40,18 @@ bibliographic management tool.  Gloa is similar in spirit to tools like
 and Mendeley.
 
 @menu
+* Introduction::                What is Gloa?
 * Importing Documents::         Getting documents into Gloa.
 * The Database::                How Gloa stores and finds things.
 * Exporting::                   Getting information out of Gloa.
 * Contributing::                You can help too!
 @end menu
+
+@node Introduction
+@chapter Introduction
+
+@cindex purpose
+Gloa is a document and bibliographic management tool.
 
 @node Importing Documents
 @chapter Importing Documents
