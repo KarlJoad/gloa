@@ -86,6 +86,12 @@ A variety of formats will eventually be supported, but because academia
 has settled on using BibTeX as the default reference format, that is
 currently the best (and only) supported format.
 
+When a document is imported, a copy of the provided document is made,
+and stored in @code{%default-storage-directory}.  This defaults to
+@file{$XDG_DATA_HOME/gloa/}, which usually expands to
+@file{$HOME/.local/gloa/}.  Newly imported documents get renamed
+slightly to make finding them faster, and is done by hashing the document.
+
 @node The Database
 @chapter The Database
 
