@@ -24,5 +24,15 @@ To update the pre-install environment script, you must re-~configure~ the packag
 $ ./configure
 #+end_src
 
+* Documentation
+To build the documentation, you must first configure the project.
+#+begin_src sh
+$ ./bootstrap && ./configure
+# Then you can select which of the below Make targets to run
+$ make info # To build the info artifact
+$ make pdf  # To build the PDF artifact
+$ make html # To build the HTML, viewable with a web browser
+#+end_src
+
 * License
 GNU GPLv3 or later.  See =COPYING= for the full license text.

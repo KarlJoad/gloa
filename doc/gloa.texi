@@ -1,0 +1,87 @@
+\input texinfo
+@c -*- texinfo -*-
+
+@c %**start of header
+@setfilename gloa.info
+@documentencoding UTF-8
+@settitle Gloa Reference Manual
+@c %**end of header
+
+@include version.texi
+
+@copying
+Copyright @copyright{} 2023 Raven Hallsby@*
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A
+copy of the license is included in the section entitled ``GNU Free
+Documentation License''.
+@end copying
+
+@titlepage
+@title Gloa Reference Manual
+@subtitle Article/Document management software
+@author Raven Hallsby
+
+@insertcopying
+@end titlepage
+
+@contents
+
+@c *********************************************************************
+@node Top
+@top Gloa
+
+@menu
+* Importing Documents::         Getting documents into Gloa.
+* The Database::                How Gloa stores and finds things.
+* Exporting::                   Getting information out of Gloa.
+* Contributing::                You can help too!
+@end menu
+
+@node Importing Documents
+@chapter Importing Documents
+
+@node The Database
+@chapter The Database
+
+@node Exporting
+@chapter Exporting
+
+@node Contributing
+@chapter Contributing
+
+@cindex documentation
+@menu
+* Writing Documentation::       Improving & Writing Documentation.
+@end menu
+
+@node Writing Documentation
+@section Writing Documentation
+
+Guix is documented using the Texinfo system.
+
+To render documentation, you must first make sure that you ran both
+@command{./bootstrap} and @command{./configure} in your source tree.
+After that you can run one of the following commands:
+
+@itemize
+@item @samp{make info} to compile the Info manual.
+      You can check it with @command{info doc/gloa.info}.
+@item @samp{make doc/gloa.info} to compile the Info manual.
+      You can check it with @command{info doc/gloa.info}.
+@item @samp{make html} to compile the HTML version.
+      You can point your browser to the relevant file in the
+      @file{doc/gloa.html} directory.
+@item @samp{make doc/gloa.html} to compile the HTML version.
+      You can point your browser to the relevant file in the
+      @file{doc/gloa.html} directory.
+@end itemize
+
+@bye
+
+@c Local Variables:
+@c ispell-local-dictionary: "american";
+@c End:
