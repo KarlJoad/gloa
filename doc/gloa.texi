@@ -45,6 +45,7 @@ and Mendeley.
 * The Database::                How Gloa stores and finds things.
 * Searching::                   Searching the database.
 * Exporting::                   Getting information out of Gloa.
+* Interacting with Gloa::       Using Gloa.
 * Contributing::                You can help too!
 @end menu
 
@@ -244,6 +245,23 @@ location under @file{$XDG_DATA_HOME/gloa/}.
 By manually exporting, you are ignoring the information within Gloa's
 database. This means you may lose bibliographic information!
 @end quotation
+
+@node Interacting with Gloa
+@chapter Interacting with Gloa
+@cindex repl
+@cindex REPL
+
+The user can interact with Gloa in three ways:
+@enumerate
+@item
+The command-line with single expressions.
+@item
+The Gloa REPL, which allows for programming higher-order operations and
+longer-lasting sessions.
+@item
+The Gloa server, which is a Gloa REPL not intended for users, but for
+other programs to use instead.
+@end enumerate
 
 @node Contributing
 @chapter Contributing
