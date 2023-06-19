@@ -297,10 +297,30 @@ user were directly interacting with Gloa's REPL.
 
 @menu
 * Command-line Options::        Changing Gloa's behavior at the shell.
+* Configuration File::          Changing Gloa's behavior with a file.
 @end menu
 
 @node Command-line Options
 @section Command-line Options
+
+@node Configuration File
+@section Configuration File
+The user will be able to configure Gloa from either the command-line or
+from a configuration file.  The configuration file has several, mutually
+exclusive, supported locations.
+
+@enumerate
+@item
+@file{$XDG_CONFIG_HOME/gloa/init.scm} is the first-searched
+path.  Typically, @code{XDG_CONFIG_HOME} expands to @file{$HOME/.config}.
+@item
+@file{$HOME/.gloa.d/init.scm}
+@item
+@code{$HOME/.gloa.scm}
+@end enumerate
+
+These paths are scanned in the above order, stopping when the first path
+contains a configuration.
 
 @node Contributing
 @chapter Contributing
