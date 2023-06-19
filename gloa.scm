@@ -23,6 +23,13 @@
        (format #f "~a/.cache" (getenv "HOME")))
    "/gloa/gloa.sqlite"))
 
+(define (%default-storage-directory)
+  "The default location of Gloa's tracked documents."
+  (string-append
+   (or (getenv "XDG_DATA_HOME")
+       (format #f "~a/.local" (getenv "HOME")))
+   "/gloa/"))
+
 (define (%default-user-config-location)
   "Location of user's configuration of Gloa.
 Searches for @code{$XDG_CONFIG_HOME/gloa/init.scm} first, if that is not found,
