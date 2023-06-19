@@ -81,6 +81,37 @@ convenient way.
 
 Gloa's main features will include:
 @itemize
+@item
+The ability to import PDFs with their bibliographic information.
+@pxref{Importing Documents} for how to import documents.
+@item
+The ability to export bibliography information.  @pxref{Exporting} for
+how to export bibliography information.
+@item
+An SQLite database for quickly searching, organizing, and finding
+articles.  @xref{The Database} for more information on the database, its
+schema, and how it is used.
+@item
+Searching the database with a variety of terms using a variety of
+syntaxes. @pxref{Searching} for the terms that can be used for searching
+and the various syntaxes supported.
+@item
+The ability for the user to perfom configuration of Gloa through a
+configuration file.  @xref{User Configuration} for more information.
+@item
+REPL support.  The user can open an interactive instance of Gloa to
+manually perform operations on Gloa and its database, like
+@pxref{Running Guile Interactively,,, guile, GNU Guile Reference
+Manual}.
+@item
+Server support.  Gloa will support opening a REPL server that allows
+other programs to send s-expressions to Gloa for evaluation.  @xref{Gloa
+as a Server} for how to interact with Gloa when it is acting as a
+server.
+@item
+API exporting for inclusion in other Guile programs.  Gloa will export
+its major functions through Guile's module system.  @xref{Using Gloa
+from Guile} for more information.
 @end itemize
 
 @node Importing Documents
