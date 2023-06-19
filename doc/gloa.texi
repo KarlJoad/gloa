@@ -46,6 +46,7 @@ and Mendeley.
 * Searching::                   Searching the database.
 * Exporting::                   Getting information out of Gloa.
 * Interacting with Gloa::       Using Gloa.
+* User Configuration::          Customizing Gloa.
 * Contributing::                You can help too!
 @end menu
 
@@ -290,6 +291,9 @@ other tools will be able to interact with Gloa too.
 
 When Gloa is running as a server, behave @b{exactly} the same as if the
 user were directly interacting with Gloa's REPL.
+
+@node User Configuration
+@chapter User Configuration
 
 @node Contributing
 @chapter Contributing
