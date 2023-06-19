@@ -47,6 +47,7 @@ and Mendeley.
 * Exporting::                   Getting information out of Gloa.
 * Interacting with Gloa::       Using Gloa.
 * User Configuration::          Customizing Gloa.
+* Using Gloa from Guile::       Using Gloa from Guile for other uses.
 * Contributing::                You can help too!
 @end menu
 
@@ -321,6 +322,16 @@ path.  Typically, @code{XDG_CONFIG_HOME} expands to @file{$HOME/.config}.
 
 These paths are scanned in the above order, stopping when the first path
 contains a configuration.
+
+@node Using Gloa from Guile
+@chapter Using Gloa from Guile
+
+Gloa exports its main interface as Guile modules @pxref{Creating Guile
+Modules,,, guile, GNU Guile Reference Manual}, marking them as
+declarative (@pxref{Declarative Modules,,, guile, GNU Guile Reference
+Manual}).
+Using this, any user may extend the functionality of Gloa using all of
+Guile's available tools.
 
 @node Contributing
 @chapter Contributing
