@@ -295,6 +295,13 @@ user were directly interacting with Gloa's REPL.
 @node User Configuration
 @chapter User Configuration
 
+@menu
+* Command-line Options::        Changing Gloa's behavior at the shell.
+@end menu
+
+@node Command-line Options
+@section Command-line Options
+
 @node Contributing
 @chapter Contributing
 
