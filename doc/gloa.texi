@@ -190,6 +190,7 @@ documents they have read for their own writing.
 
 @menu
 * Exporting Bibliography Information::  Getting bibliographies out.
+* Exporting Everything::        Getting everything out of Gloa.
 @end menu
 
 @node Exporting Bibliography Information
@@ -203,6 +204,46 @@ information.
 Like when importing, Gloa supports writing the exported bibliography
 information to multiple bibliography formats.  Again, BibTeX is the
 best-supported bibliography format currently.
+
+@node Exporting Everything
+@section Exporting Everything
+
+If Gloa is not the tool for you, you are able to export everything you
+have collected in your Gloa database easily.
+
+@menu
+* Automatically Exporting::     Having Gloa export everything for you.
+* Manually Exporting::          Exporting everything yourself.
+@end menu
+
+@node Automatically Exporting
+@subsection Automatically Exporting
+
+If you choose to have Gloa perform the export, it will take two steps:
+
+@enumerate
+@item
+Dump all your documents to a single directory, @emph{without a
+hierarchy}.  All files will be slightly renamed, starting with their
+hash and then including a portion of their title, to prevent
+accidentally giving two documents the file name.
+@item
+All your bibliography files, one for each corresponding document entry.
+The bibliography file will have the same file name as the document,
+except for the extension.
+@end enumerate
+
+@node Manually Exporting
+@subsection Manually Exporting
+
+If you do not wish for Gloa to export all of your files for you, you may
+do this process manually. All your documents are stored in a single
+location under @file{$XDG_DATA_HOME/gloa/}.
+
+@quotation Warning
+By manually exporting, you are ignoring the information within Gloa's
+database. This means you may lose bibliographic information!
+@end quotation
 
 @node Contributing
 @chapter Contributing
