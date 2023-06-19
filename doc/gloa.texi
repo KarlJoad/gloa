@@ -184,6 +184,10 @@ title:'Sample title' AND tags:'example,other'
 @node Exporting
 @chapter Exporting
 
+Getting information out of Gloa is also important.  Users might be
+especially interested in exporting bibliography information for
+documents they have read for their own writing.
+
 @node Contributing
 @chapter Contributing
 
