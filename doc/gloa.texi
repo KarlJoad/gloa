@@ -265,6 +265,7 @@ other programs to use instead.
 
 @menu
 * Interactive Gloa::            Using Gloa's REPL.
+* Gloa as a Server::            Using Gloa as a server for other programs.
 @end menu
 
 @node Interactive Gloa
@@ -274,6 +275,21 @@ This will eventually be used to implement a major mode for Emacs that
 integrates with Gloa.  But because only s-expressions are sent back and
 forth, it will be a generic protocol, allowing other programs to also
 use the server provided by Gloa.
+
+@node Gloa as a Server
+@section Gloa as a Server
+
+Gloa will also support running in a server mode, where it receives
+s-expressions, attempts to execute them, and potentially returns the
+results.
+
+This server will be built with the associated Emacs major mode in mind.
+However, because the server will just use Guile's built-in @pxref{REPL
+Servers,,, guile, GNU Guile Reference Manual} and use s-expressions,
+other tools will be able to interact with Gloa too.
+
+When Gloa is running as a server, behave @b{exactly} the same as if the
+user were directly interacting with Gloa's REPL.
 
 @node Contributing
 @chapter Contributing
