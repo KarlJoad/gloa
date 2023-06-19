@@ -263,6 +263,18 @@ The Gloa server, which is a Gloa REPL not intended for users, but for
 other programs to use instead.
 @end enumerate
 
+@menu
+* Interactive Gloa::            Using Gloa's REPL.
+@end menu
+
+@node Interactive Gloa
+@section Interactive Gloa
+
+This will eventually be used to implement a major mode for Emacs that
+integrates with Gloa.  But because only s-expressions are sent back and
+forth, it will be a generic protocol, allowing other programs to also
+use the server provided by Gloa.
+
 @node Contributing
 @chapter Contributing
 
