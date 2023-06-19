@@ -366,16 +366,16 @@ Guile's available tools.
 
 @node Contributing
 @chapter Contributing
-
 @cindex documentation
+
+Guix is documented using the Texinfo system.
+
 @menu
 * Writing Documentation::       Improving & Writing Documentation.
 @end menu
 
 @node Writing Documentation
 @section Writing Documentation
-
-Guix is documented using the Texinfo system.
 
 To render documentation, you must first make sure that you ran both
 @command{./bootstrap} and @command{./configure} in your source tree.
