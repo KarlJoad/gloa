@@ -188,6 +188,22 @@ Getting information out of Gloa is also important.  Users might be
 especially interested in exporting bibliography information for
 documents they have read for their own writing.
 
+@menu
+* Exporting Bibliography Information::  Getting bibliographies out.
+@end menu
+
+@node Exporting Bibliography Information
+@section Exporting Bibliography Information
+
+Users can export bibliographies for selected documents and write them to
+either a single bibliography file, or to multiple.  This can be used to
+create a citation database for a paper or just to export bibliography
+information.
+
+Like when importing, Gloa supports writing the exported bibliography
+information to multiple bibliography formats.  Again, BibTeX is the
+best-supported bibliography format currently.
+
 @node Contributing
 @chapter Contributing
 
