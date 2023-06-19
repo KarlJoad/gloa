@@ -82,6 +82,10 @@ Gloa's main features will include:
 @node Importing Documents
 @chapter Importing Documents
 
+A variety of formats will eventually be supported, but because academia
+has settled on using BibTeX as the default reference format, that is
+currently the best (and only) supported format.
+
 @node The Database
 @chapter The Database
 
