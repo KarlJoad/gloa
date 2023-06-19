@@ -90,10 +90,29 @@ When a document is imported, a copy of the provided document is made,
 and stored in @code{%default-storage-directory}.  This defaults to
 @file{$XDG_DATA_HOME/gloa/}, which usually expands to
 @file{$HOME/.local/gloa/}.  Newly imported documents get renamed
-slightly to make finding them faster, and is done by hashing the document.
+slightly to make finding them faster, and is done by hashing the
+document.
+
+@quotation TODO
+What gets hashed to make a unique name for the PDF file is not currently
+known.  I can hash just the metadata of the file (which would mean
+bibliography information automatically ends up in the same spot), @b{OR}
+I could hash the document itself.
+@end quotation
+
+@quotation TODO
+MD5 is a fast enough hash algorithm, but I am not sure how many
+collisions can eventually be encountered.  SHA @emph{would} work
+instead, but that might be too slow, and I am not sure if I want to deal
+with the ``broken'' SHA-1 problem.
+@end quotation
 
 @node The Database
 @chapter The Database
+
+Currently, the database defaults to
+@file{$XDG_CACHE_HOME/gloa/gloa.sqlite}, which usually ends up expanding
+to @file{$HOME/.cache/gloa/gloa.sqlite}.
 
 @node Exporting
 @chapter Exporting
