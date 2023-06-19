@@ -69,4 +69,5 @@
 
  (emacs-lisp-mode . ((indent-tabs-mode . nil)))
  (texinfo-mode    . ((indent-tabs-mode . nil)
-                     (fill-column . 72))))
+                     (fill-column . 72)
+                     (sentence-end-double-space . t))))
