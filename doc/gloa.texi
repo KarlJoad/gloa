@@ -371,8 +371,16 @@ Guile's available tools.
 Guix is documented using the Texinfo system.
 
 @menu
-* Writing Documentation::       Improving & Writing Documentation.
+* Submitting Patches::          Sharing your work & improvements.
+* Writing Documentation::       Improving & Writing documentation.
 @end menu
+
+@node Submitting Patches
+@section Submitting Patches
+When writing documentation, please use gender-neutral wording when
+referring to people, such as
+@uref{https://en.wikipedia.org/wiki/Singular_they, singular
+``they''@comma{} ``their''@comma{} ``them''}, and so forth.
 
 @node Writing Documentation
 @section Writing Documentation
