@@ -124,6 +124,7 @@ become difficult.
 
 @menu
 * Search Terms::                Keywords that Gloa will understand.
+* Search Syntax::               Ways to express queries.
 @end menu
 
 @node Search Terms
@@ -138,6 +139,47 @@ include:
 @code{author}: The author of the document.  This keyword can be used
 multiple times to specify multiple authors.
 @end itemize
+
+@node Search Syntax
+@section Search Syntax
+
+Gloa supports two search syntaxes.  The first is an s-expression-based
+syntax, which is useful for programmatically creating search queries.
+The second is a natural-language syntax, which is more convenient for
+command-line searching and user-use.
+
+The natural-language syntax will be converted to the s-expression syntax
+before being executed.
+
+@cindex syntax
+@menu
+* Sexp Syntax::                 A syntax using S-expressions.
+* Natural Syntax::              A more natural syntax.
+@end menu
+
+@node Sexp Syntax
+@subsection Sexp Syntax
+
+The s-expression syntax is exactly as it sounds, you express your search
+query as a combination of s-expression logical operators and search
+terms with values.  An example is shown below:
+
+@lisp
+(and (title . "Sample title")
+     (tags    '("example" "other")))
+@end lisp
+
+@node Natural Syntax
+@subsection Natural Syntax
+
+Sometimes the s-expression syntax is too verbose for a quick search,
+particularly when using Gloa from the command-line.  So, Gloa will also
+support a simpler query language that is loosely based on English
+grammar.  The same example query from the previous section is used here.
+
+@example
+title:'Sample title' AND tags:'example,other'
+@end example
 
 @node Exporting
 @chapter Exporting
