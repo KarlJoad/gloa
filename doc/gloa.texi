@@ -43,6 +43,7 @@ and Mendeley.
 * Introduction::                What is Gloa?
 * Importing Documents::         Getting documents into Gloa.
 * The Database::                How Gloa stores and finds things.
+* Searching::                   Searching the database.
 * Exporting::                   Getting information out of Gloa.
 * Contributing::                You can help too!
 @end menu
@@ -114,6 +115,12 @@ Currently, the database defaults to
 @file{$XDG_CACHE_HOME/gloa/gloa.sqlite}, which usually ends up expanding
 to @file{$HOME/.cache/gloa/gloa.sqlite}.
 
+@node Searching
+@chapter Searching
+
+Searching for documents is one of the most important functions of Gloa,
+as people tend to accumulate @b{many} documents, and finding them can
+become difficult.
 @node Exporting
 @chapter Exporting
 
