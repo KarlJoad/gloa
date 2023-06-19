@@ -53,6 +53,24 @@ and Mendeley.
 @cindex purpose
 Gloa is a document and bibliographic management tool.
 
+@menu
+* Why was Gloa made?::          Why was Gloa made?
+@end menu
+
+@node Why was Gloa made?
+@section Why was Gloa made?
+Gloa@tie{}(Guile's Library of Alexandria) is intended to be a GNU-like
+replacement for tools like Zotero.  While Zotero is a fine program for
+many people and use-cases, its reliance on JavaScript makes it difficult
+to port to Guix, as JavaScript is difficult to bootstrap.  Also, the
+author is fond of s-expressions, Lisps, and using Emacs to manage their
+life.
+
+Gloa is (eventually) intended to be a full replacement for tools like
+Zotero, allowing users to manage research articles, annotated articles,
+research papers, and their associated bibliography information in a
+convenient way.
+
 @node Importing Documents
 @chapter Importing Documents
 
