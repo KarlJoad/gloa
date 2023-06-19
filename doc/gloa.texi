@@ -34,6 +34,11 @@ Documentation License''.
 @node Top
 @top Gloa
 
+This document describes Gloa version @value{VERSION}, a document and
+bibliographic management tool.  Gloa is similar in spirit to tools like
+@uref{https://calibre.com, Calibre}, @uref{https://zotero.com, Zotero},
+and Mendeley.
+
 @menu
 * Importing Documents::         Getting documents into Gloa.
 * The Database::                How Gloa stores and finds things.
