@@ -291,6 +291,19 @@ Like when importing, Gloa supports writing the exported bibliography
 information to multiple bibliography formats.  Again, @BibTeX is the
 best-supported bibliography format currently.
 
+@menu
+* Export BibTeX::               Exporting entries to @BibTeX format.
+@end menu
+
+@node Export BibTeX
+@subsection BibTeX
+
+Exporting to the @BibTeX format is done with the @code{export-bibtex} procedure.
+
+@lisp
+(export-bibtex ...)
+@end lisp
+
 @node Exporting Everything
 @section Exporting Everything
 
