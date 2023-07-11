@@ -368,7 +368,7 @@ Guile's available tools.
 @chapter Contributing
 @cindex documentation
 
-Guix is documented using the Texinfo system.
+Gloa is documented using the Texinfo system.
 
 @menu
 * Submitting Patches::          Sharing your work & improvements.
