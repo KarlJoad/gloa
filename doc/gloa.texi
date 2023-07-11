@@ -94,6 +94,7 @@ convenient way.
 @section Features
 
 Gloa's main features will include:
+
 @itemize
 @item
 The ability to import PDFs with their bibliographic information.
@@ -123,9 +124,9 @@ other programs to send s-expressions to Gloa for evaluation.  @xref{Gloa
 as a Server} for how to interact with Gloa when it is acting as a
 server.
 @item
-API exporting for inclusion in other Guile programs.  Gloa will export
-its major functions through Guile's module system.  @xref{Using Gloa
-from Guile} for more information.
+An API exporting for inclusion in other Guile programs.  Gloa will
+export its major functions through Guile's module system.  @xref{Using
+Gloa from Guile} for more information.
 @end itemize
 
 @node Importing Documents
@@ -218,6 +219,7 @@ become difficult.
 
 A selection of search terms are soft-reserved as keywords.  These
 include:
+
 @itemize
 @item
 @code{title}: The title of the document.
@@ -327,9 +329,9 @@ hierarchy}.  All files will be slightly renamed, starting with their
 hash and then including a portion of their title, to prevent
 accidentally giving two documents the file name.
 @item
-All your bibliography files, one for each corresponding document entry.
-The bibliography file will have the same file name as the document,
-except for the extension.
+Export and dump a bibliography file corresponding to each document
+entry.  The bibliography file will have the same file name as the
+document, except for the extension.
 @end enumerate
 
 @node Manually Exporting
@@ -391,6 +393,8 @@ user were directly interacting with Gloa's REPL.
 
 @node User Configuration
 @chapter User Configuration
+The user will be able to configure Gloa from either the command-line or
+from a configuration file.
 
 @menu
 * Command-line Options::        Changing Gloa's behavior at the shell.
@@ -399,12 +403,13 @@ user were directly interacting with Gloa's REPL.
 
 @node Command-line Options
 @section Command-line Options
+The available command-line options mirror the options that can be
+configured in Gloa's configuration file, @ref{Configuration File}.
 
 @node Configuration File
 @section Configuration File
-The user will be able to configure Gloa from either the command-line or
-from a configuration file.  The configuration file has several, mutually
-exclusive, supported locations.
+Gloa's configuration file has several, mutually exclusive, supported
+locations.
 
 @enumerate
 @item
@@ -416,8 +421,8 @@ path.  Typically, @code{XDG_CONFIG_HOME} expands to @file{$HOME/.config}.
 @code{$HOME/.gloa.scm}
 @end enumerate
 
-These paths are scanned in the above order, stopping when the first path
-contains a configuration.
+These paths are scanned in the above order, stopping for the first path
+that contains a possible configuration file.
 
 @node Using Gloa from Guile
 @chapter Using Gloa from Guile
