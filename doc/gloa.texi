@@ -115,9 +115,8 @@ The ability for the user to perfom configuration of Gloa through a
 configuration file.  @xref{User Configuration} for more information.
 @item
 REPL support.  The user can open an interactive instance of Gloa to
-manually perform operations on Gloa and its database, like
-@ref{Running Guile Interactively,,, guile, GNU Guile Reference
-Manual}.
+manually perform operations on Gloa and its database, like @ref{Running
+Guile Interactively,,, guile, GNU Guile Reference Manual}.
 @item
 Server support.  Gloa will support opening a REPL server that allows
 other programs to send s-expressions to Gloa for evaluation.  @xref{Gloa
@@ -198,9 +197,8 @@ Guile Reference Manual}.
 @node The Database
 @chapter The Database
 
-Currently, the database defaults to
-@value{DEFAULT-DB-LOCATION}, which usually ends up expanding
-to @file{$HOME/.cache/gloa/gloa.sqlite}.
+Currently, the database defaults to @value{DEFAULT-DB-LOCATION}, which
+usually ends up expanding to @file{$HOME/.cache/gloa/gloa.sqlite}.
 
 @node Searching
 @chapter Searching
@@ -300,7 +298,8 @@ best-supported bibliography format currently.
 @node Export BibTeX
 @subsection BibTeX
 
-Exporting to the @BibTeX format is done with the @code{export-bibtex} procedure.
+Exporting to the @BibTeX format is done with the @code{export-bibtex}
+procedure.
 
 @lisp
 (export-bibtex ...)
@@ -413,8 +412,8 @@ locations.
 
 @enumerate
 @item
-@file{$XDG_CONFIG_HOME/gloa/init.scm} is the first-searched
-path.  Typically, @code{XDG_CONFIG_HOME} expands to @file{$HOME/.config}.
+@file{$XDG_CONFIG_HOME/gloa/init.scm} is the first-searched path.
+Typically, @code{XDG_CONFIG_HOME} expands to @file{$HOME/.config}.
 @item
 @file{$HOME/.gloa.d/init.scm}
 @item
@@ -430,13 +429,13 @@ that contains a possible configuration file.
 Gloa exports its main interface as Guile modules @pxref{Creating Guile
 Modules,,, guile, GNU Guile Reference Manual}, marking them as
 declarative (@pxref{Declarative Modules,,, guile, GNU Guile Reference
-Manual}).
-Using this, any user may extend the functionality of Gloa using all of
-Guile's available tools.
+Manual}).  Using this, any user may extend the functionality of Gloa
+using all of Guile's available tools.
 
 @node Future Work
 @chapter Future Work
-Some future goals are captured her, which may eventually be incorporated into Gloa.
+Some future goals are captured her, which may eventually be incorporated
+into Gloa.
 
 @enumerate
 @item
