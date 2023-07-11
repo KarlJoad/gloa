@@ -9,6 +9,9 @@
 
 @include version.texi
 
+@set DEFAULT-STORAGE-DIRECTORY @file{$XDG_DATA_HOME/gloa/}
+@set DEFAULT-DB-LOCATION @file{$XDG_CACHE_HOME/gloa/gloa.sqlite}
+
 @c This typesetting of BibTeX is close enough (in my opinion) to the
 @c real way to typeset it that it should work for now.
 @macro BibTeX
@@ -134,7 +137,7 @@ currently the best (and only) supported format.
 
 When a document is imported, a copy of the provided document is made,
 and stored in @code{%default-storage-directory}.  This defaults to
-@file{$XDG_DATA_HOME/gloa/}, which usually expands to
+@value{DEFAULT-STORAGE-DIRECTORY}, which usually expands to
 @file{$HOME/.local/gloa/}.  Newly imported documents get renamed
 slightly to make finding them faster, and is done by hashing the
 document.
@@ -157,7 +160,7 @@ with the ``broken'' SHA-1 problem.
 @chapter The Database
 
 Currently, the database defaults to
-@file{$XDG_CACHE_HOME/gloa/gloa.sqlite}, which usually ends up expanding
+@value{DEFAULT-DB-LOCATION}, which usually ends up expanding
 to @file{$HOME/.cache/gloa/gloa.sqlite}.
 
 @node Searching
@@ -283,7 +286,7 @@ except for the extension.
 
 If you do not wish for Gloa to export all of your files for you, you may
 do this process manually. All your documents are stored in a single
-location under @file{$XDG_DATA_HOME/gloa/}.
+location under @value{DEFAULT-STORAGE-DIRECTORY}.
 
 @quotation Warning
 By manually exporting, you are ignoring the information within Gloa's
