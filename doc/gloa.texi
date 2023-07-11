@@ -48,6 +48,7 @@ and Mendeley.
 * Interacting with Gloa::       Using Gloa.
 * User Configuration::          Customizing Gloa.
 * Using Gloa from Guile::       Using Gloa from Guile for other uses.
+* Future Work::                 Long-term ideas for Gloa.
 * Contributing::                You can help too!
 @end menu
 
@@ -363,6 +364,21 @@ declarative (@pxref{Declarative Modules,,, guile, GNU Guile Reference
 Manual}).
 Using this, any user may extend the functionality of Gloa using all of
 Guile's available tools.
+
+@node Future Work
+@chapter Future Work
+Some future goals are captured her, which may eventually be incorporated into Gloa.
+
+@enumerate
+@item
+Searching the text of stored PDFs, in addition to their metadata.
+@item
+Getting metadata about the article from the PDF document itself, rather
+than relying on a bibliography file.  This comes with some issues
+though, as some PDFs do not embed metadata, which is true for scans of
+older articles.  Some works use modern PDF features, but have malformed
+metadata.
+@end enumerate
 
 @node Contributing
 @chapter Contributing
