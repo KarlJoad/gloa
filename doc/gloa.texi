@@ -156,6 +156,44 @@ instead, but that might be too slow, and I am not sure if I want to deal
 with the ``broken'' SHA-1 problem.
 @end quotation
 
+@menu
+* BibTeX::                      Importing articles using @BibTeX
+@end menu
+
+@node BibTeX
+@section BibTeX
+
+@BibTeX is currently the most commonly used bibliography format for many academic journals.
+Because of this, most journal/article libraries on the Internet also
+support exporting the document's metadata in a @BibTeX format.  Gloa has
+support for reading and importing articles using the article's
+corresponding @BibTeX information.
+
+A @BibTeX file may contain multiple bibliographic entries. Each entry
+starts with a type, identified by @code{@@type}, which describes the
+kind of document the citation accompanies.  Common document types
+include @code{@@article}, @code{@@inproceedings}, and
+@code{@@misc}@footnote{The @code{@@misc} type is frequently used for
+online resources, as @BibTeX has no entry type for online-only
+resources, like web pages.}.  After the type, there is an ID, which must
+uniquely identify each citation present among all citations within a
+given project.  This ID must may contain letters, numbers, and some
+special characters, notably @code{-}, @code{_}, @code{/}, and @code{.}.
+After the ID, comes a list of key-value pair tags.  Some keys are
+defined by the entry type, such as @code{author} or @code{isbn}.  But
+keys are free to be added, so long as they have a corresponding value.
+For further information about @BibTeX citations see the
+@uref{https://www.bibtex.org/Format/, Official BibTeX Format}.
+
+Currently, there is only one procedure to import a @BibTeX file,
+@code{import-bibtex}, which attempts to return the contents of
+the @BibTeX file as an alist @pxref{Association Lists,,, guile, GNU
+Guile Reference Manual}.
+
+@lisp
+(define article-metadata (import-bibtex "file-name"))
+@end lisp
+
 @node The Database
 @chapter The Database
 
