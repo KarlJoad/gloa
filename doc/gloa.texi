@@ -9,6 +9,16 @@
 
 @include version.texi
 
+@c This typesetting of BibTeX is close enough (in my opinion) to the
+@c real way to typeset it that it should work for now.
+@macro BibTeX
+@sc{Bib}@TeX{}
+@end macro
+
+@macro BibLaTeX
+@sc{Bib}@LaTeX{}
+@end macro
+
 @copying
 Copyright @copyright{} 2023 Raven Hallsby@*
 
@@ -119,7 +129,7 @@ from Guile} for more information.
 @chapter Importing Documents
 
 A variety of formats will eventually be supported, but because academia
-has settled on using BibTeX as the default reference format, that is
+has settled on using @BibTeX as the default reference format, that is
 currently the best (and only) supported format.
 
 When a document is imported, a copy of the provided document is made,
@@ -237,7 +247,7 @@ create a citation database for a paper or just to export bibliography
 information.
 
 Like when importing, Gloa supports writing the exported bibliography
-information to multiple bibliography formats.  Again, BibTeX is the
+information to multiple bibliography formats.  Again, @BibTeX is the
 best-supported bibliography format currently.
 
 @node Exporting Everything
