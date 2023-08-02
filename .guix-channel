@@ -1,0 +1,4 @@
+;; -*- scheme -*-
+(channel
+ (version 0)
+ (directory ".guix/modules")) ;Look for package modules under .guix/modules/
