@@ -50,7 +50,7 @@
 
 (package
   (name "gloa")
-  (version "0.0.0")
+  (version "0.1")
   (source (local-file "." "gloa-checkout"
                       #:recursive? #t
                       #:select? vcs-file?))
