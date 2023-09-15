@@ -9,6 +9,8 @@
             serialize-article-authors
             deserialize-article-authors))
 
+;; TODO: Make this a GOOPS class? Then the constructor takes in the alist from
+;; an importer meta-class?
 (define-record-type <article>
   (make-article title authors)
   article?
