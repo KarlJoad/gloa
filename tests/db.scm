@@ -16,7 +16,7 @@ If the file does not exist, then an exception is raised."
 (define testing-db-conn (make-parameter #f))
 (define second-db-connection (make-parameter #f))
 
-(with-tests "db-tests"
+(with-tests "db-create-open-close"
   (test-error "open-missing-db" 'sqlite-error
     (open-db "not-present.db"))
 
