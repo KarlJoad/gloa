@@ -22,4 +22,5 @@
                         "SELECT name FROM authors WHERE id IN
 (SELECT author_id FROM documents_authors_link WHERE document_id = :docid)"
                         (docid doc-id))))
-          (make-article title author-list))))))
+          (make-article title author-list))))
+    #:unwind? #t))
