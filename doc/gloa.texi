@@ -180,10 +180,11 @@ uniquely identify each citation present among all citations within a
 given project.  This ID may contain letters, numbers, and some special
 characters, notably @code{-}, @code{_}, @code{/}, and @code{.} (period).
 After the ID, comes a list of key-value pair tags.  Some keys are
-defined by the entry type, such as @code{author} or @code{isbn}.  But
-keys are free to be added, so long as they have a corresponding value.
-For further information about @BibTeX{} citations see the
-@uref{https://www.bibtex.org/Format/, Official BibTeX Format}.
+defined by the entry type, such as @code{author} or @code{isbn} and are
+required.  But other keys are free to be added, @emph{so long as they
+have a corresponding value}. For further information about @BibTeX{}
+citations see the @uref{https://www.bibtex.org/Format/, Official BibTeX
+Format}.
 
 Currently, there is only one procedure to import a @BibTeX{} file,
 @code{import-bibtex}, which attempts to return the contents of the
