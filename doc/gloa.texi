@@ -177,8 +177,8 @@ include @code{@@article}, @code{@@inproceedings}, and
 online resources, as @BibTeX{} has no entry type for online-only
 resources, like web pages.}.  After the type, there is an ID, which must
 uniquely identify each citation present among all citations within a
-given project.  This ID must may contain letters, numbers, and some
-special characters, notably @code{-}, @code{_}, @code{/}, and @code{.}.
+given project.  This ID may contain letters, numbers, and some special
+characters, notably @code{-}, @code{_}, @code{/}, and @code{.} (period).
 After the ID, comes a list of key-value pair tags.  Some keys are
 defined by the entry type, such as @code{author} or @code{isbn}.  But
 keys are free to be added, so long as they have a corresponding value.
