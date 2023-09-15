@@ -388,8 +388,8 @@ However, because the server will just use Guile's built-in @pxref{REPL
 Servers,,, guile, GNU Guile Reference Manual} and use s-expressions,
 other tools will be able to interact with Gloa too.
 
-When Gloa is running as a server, behave @b{exactly} the same as if the
-user were directly interacting with Gloa's REPL.
+When Gloa is running as a server, it will behave @b{exactly} the same as
+if the user were directly interacting with Gloa's REPL.
 
 @node User Configuration
 @chapter User Configuration
@@ -435,8 +435,8 @@ using all of Guile's available tools.
 
 @node Future Work
 @chapter Future Work
-Some future goals are captured her, which may eventually be incorporated
-into Gloa.
+Some future goals are captured here, which may eventually be
+incorporated into Gloa.
 
 @enumerate
 @item
