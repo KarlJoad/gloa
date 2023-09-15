@@ -10,6 +10,7 @@
             query*
             with-db
 
+            &no-sql-match-exception
             make-no-sql-match-exception
             no-sql-match-exception?))
 
