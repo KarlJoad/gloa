@@ -25,10 +25,10 @@ If the file does not exist, then an exception is raised."
 
 (with-tests "db-ops"
   (test-group-with-cleanup "db-ops"
-    (test-equal "add-to-db"
+    (test-assert "add-to-db"
       (begin
         (init-db %test-database-path)
-        (add-to-db %test-database-path %test-article-simple ""))
+        (add-to-db %test-database-path %test-article-simple "")))
 
     (test-equal "search-db-by-title, entry exists"
       (find-article-by-title %test-database-path (article-title %test-article-simple))
