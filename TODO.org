@@ -1,0 +1,35 @@
+* TODO [1/3] User configuration file
+** DONE Define configuration file location
+** TODO Load configuration file
+** TODO Define configuration options
+This will somewhat mirror what we have in [[*Command-line options][Command-line options]]
+
+* TODO [3/5] Interact with database
+** DONE Define database location
+** DONE Add file info to database
+** DONE Remove file from database
+** TODO Add file to store location and add file info
+** TODO Figure out why I need to put with-db everywhere
+I thought that I could use ~with-db~ to wrap entire function bodies, with control-flow and multiple calls to ~query*~ in it.
+The macro probably needs some kind of work done on it to accept bodies correctly.
+
+* TODO [0/4] Store files
+** TODO Define store location
+This should probably be done with the configuration file
+
+** TODO Index files already in location for validation
+** TODO Add file to store
+** TODO Register file with database
+
+* TODO [0/2] Command-line options
+** TODO Look into (guile) getopt-long
+** TODO Define command line options
+*** Configuration file location
+*** No config file
+*** Start server (for Emacs interaction)
+Look at how mu4e does this with the ~mu server~ command.
+
+* TODO [0/3] Others
+** TODO Look at (guix colors) for how ANSI color output is defined.
+** TODO Have ~query*~ throw an error if used outside of with-db context
+** TODO Do PROPER error handling of the SQLite statements!
