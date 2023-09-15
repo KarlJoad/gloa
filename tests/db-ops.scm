@@ -34,4 +34,9 @@ If the file does not exist, then an exception is raised."
       (find-article-by-title %test-database-path (article-title %test-article-simple))
       %test-article-simple)
 
+    (test-error "remove-from-db, remove author (orphaned)" &no-sql-match-exception
+      (begin
+        (remove-from-db %test-database-path %test-article-simple)
+        (find-article-by-title %test-database-path (article-title %test-article-simple))))
+
     (remove-test-db %test-database-path)))
