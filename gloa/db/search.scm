@@ -4,7 +4,9 @@
   #:use-module (gloa article)
   #:export (find-article-by-title))
 
-;; FIXME: Harden these functions and
+;; FIXME: Figure out how to use with-exception-handler
+;; (with-exception-handler (lambda (e) (display "caught") (newline)) (raise-exception (make-external-error)))
+;; this is far as I have gotten.
 (define (find-article-by-title db-path title)
   "Attempt to find ARTICLE. If the article does not exist, return #f."
   (with-exception-handler
