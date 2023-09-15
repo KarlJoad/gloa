@@ -132,7 +132,7 @@ Gloa from Guile} for more information.
 @chapter Importing Documents
 
 A variety of formats will eventually be supported, but because academia
-has settled on using @BibTeX as the default reference format, that is
+has settled on using @BibTeX{} as the default reference format, that is
 currently the best (and only) supported format.
 
 When a document is imported, a copy of the provided document is made,
@@ -163,18 +163,18 @@ with the ``broken'' SHA-1 problem.
 @node BibTeX
 @section BibTeX
 
-@BibTeX is currently the most commonly used bibliography format for many academic journals.
-Because of this, most journal/article libraries on the Internet also
-support exporting the document's metadata in a @BibTeX format.  Gloa has
-support for reading and importing articles using the article's
-corresponding @BibTeX information.
+@BibTeX{} is currently the most commonly used bibliography format for
+many academic journals.  Because of this, most journal/article libraries
+on the Internet also support exporting the document's metadata in a
+@BibTeX{} format.  Gloa has support for reading and importing articles
+using the article's corresponding @BibTeX{} information.
 
-A @BibTeX file may contain multiple bibliographic entries. Each entry
+A @BibTeX{} file may contain multiple bibliographic entries. Each entry
 starts with a type, identified by @code{@@type}, which describes the
 kind of document the citation accompanies.  Common document types
 include @code{@@article}, @code{@@inproceedings}, and
 @code{@@misc}@footnote{The @code{@@misc} type is frequently used for
-online resources, as @BibTeX has no entry type for online-only
+online resources, as @BibTeX{} has no entry type for online-only
 resources, like web pages.}.  After the type, there is an ID, which must
 uniquely identify each citation present among all citations within a
 given project.  This ID must may contain letters, numbers, and some
@@ -182,13 +182,13 @@ special characters, notably @code{-}, @code{_}, @code{/}, and @code{.}.
 After the ID, comes a list of key-value pair tags.  Some keys are
 defined by the entry type, such as @code{author} or @code{isbn}.  But
 keys are free to be added, so long as they have a corresponding value.
-For further information about @BibTeX citations see the
+For further information about @BibTeX{} citations see the
 @uref{https://www.bibtex.org/Format/, Official BibTeX Format}.
 
-Currently, there is only one procedure to import a @BibTeX file,
-@code{import-bibtex}, which attempts to return the contents of
-the @BibTeX file as an alist @pxref{Association Lists,,, guile, GNU
-Guile Reference Manual}.
+Currently, there is only one procedure to import a @BibTeX{} file,
+@code{import-bibtex}, which attempts to return the contents of the
+@BibTeX{} file as an alist @pxref{Association Lists,,, guile, GNU Guile
+Reference Manual}.
 
 @lisp
 (define article-metadata (import-bibtex "file-name"))
@@ -288,17 +288,17 @@ create a citation database for a paper or just to export bibliography
 information.
 
 Like when importing, Gloa supports writing the exported bibliography
-information to multiple bibliography formats.  Again, @BibTeX is the
+information to multiple bibliography formats.  Again, @BibTeX{} is the
 best-supported bibliography format currently.
 
 @menu
-* Export BibTeX::               Exporting entries to @BibTeX format.
+* Export BibTeX::               Exporting entries to @BibTeX{} format.
 @end menu
 
 @node Export BibTeX
 @subsection BibTeX
 
-Exporting to the @BibTeX format is done with the @code{export-bibtex}
+Exporting to the @BibTeX{} format is done with the @code{export-bibtex}
 procedure.
 
 @lisp
