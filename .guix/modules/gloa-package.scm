@@ -39,6 +39,7 @@
   #:use-module (gnu packages autotools)
   #:use-module (gnu packages guile)
   #:use-module (gnu packages guile-xyz)
+  #:use-module (gnu packages gnupg)
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages texinfo)
   #:use-module (gnu packages sqlite)
@@ -62,7 +63,11 @@
        (modify-phases %standard-phases
          (add-after 'unpack 'bootstrap
            (lambda _ (zero? (system* "sh" "bootstrap")))))))
-    (native-inputs (list autoconf automake pkg-config texinfo))
+    (native-inputs
+     (list
+      autoconf automake pkg-config
+      texinfo
+      guile-gcrypt))
     (inputs (list guile-3.0 sqlite guile-sqlite3))
     (synopsis "Academic article management")
     (description "Gloa is an academic article manage program written
