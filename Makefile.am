@@ -17,6 +17,7 @@
 ## along with Gloa.  If not, see <http://www.gnu.org/licenses/>.
 
 SOURCES =                \
+  gloa/config.scm        \
   gloa/hello.scm         \
   gloa/utils.scm         \
   gloa/article.scm       \
