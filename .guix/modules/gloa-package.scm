@@ -43,7 +43,7 @@
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages texinfo)
   #:use-module (gnu packages sqlite)
-  #:use-module (gnu packages guile))
+  #:use-module (synnax packages guile-xyz))
 
 (define vcs-file?
   ;; Return true if the given file is under version control.
@@ -68,7 +68,9 @@
       autoconf automake pkg-config
       texinfo
       guile-gcrypt))
-    (inputs (list guile-3.0 sqlite guile-sqlite3))
+    (inputs
+     (list guile-3.0 sqlite guile-sqlite3
+           guile-basexx))
     (synopsis "Academic article management")
     (description "Gloa is an academic article manage program written
 in Guile Scheme.")
