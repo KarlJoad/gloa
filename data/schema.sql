@@ -3,7 +3,9 @@ PRAGMA foreign_keys = ON;
 DROP TABLE IF EXISTS documents;
 CREATE TABLE IF NOT EXISTS documents (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    title TEXT NOT NULL
+    title TEXT NOT NULL,
+    -- Path to document inside Gloa's configured store
+    path TEXT NOT NULL DEFAULT ''
 );
 
 DROP TABLE IF EXISTS authors;
