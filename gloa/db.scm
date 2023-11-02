@@ -2,6 +2,7 @@
   #:use-module (sqlite3)
   #:use-module (ice-9 textual-ports)
   #:use-module (ice-9 exceptions)
+  #:use-module (gloa store utils)
   #:export (init-db
             open-db
             close-db
@@ -22,6 +23,9 @@
 (define (create-db db-path)
   "Create a SQLite3 database with FILENAME and open for reading and writing,
 returning it."
+  (when (string-index-right db-path #\/)
+    (mkdir-p (substring db-path 0
+                        (string-index-right db-path #\/))))
   (sqlite-open db-path (logior SQLITE_OPEN_READWRITE SQLITE_OPEN_CREATE)))
 
 (define (init-db db-path)
