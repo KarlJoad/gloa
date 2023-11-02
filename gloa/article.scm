@@ -12,10 +12,14 @@
 ;; TODO: Make this a GOOPS class? Then the constructor takes in the alist from
 ;; an importer meta-class?
 (define-record-type <article>
-  (make-article title authors)
+  (%make-article title authors path)
   article?
   (title article-title)
-  (authors article-authors))
+  (authors article-authors)
+  (path article-path))
+
+(define* (make-article title authors #:optional (path ""))
+  (%make-article title authors path))
 
 (define (serialize-article-authors author-list)
   (string-join author-list " and "))
