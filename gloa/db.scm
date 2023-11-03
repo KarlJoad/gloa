@@ -2,7 +2,7 @@
   #:use-module (sqlite3)
   #:use-module (ice-9 textual-ports)
   #:use-module (ice-9 exceptions)
-  #:use-module (gloa store utils)
+  #:use-module (gloa utils)
   #:export (init-db
             open-db
             close-db
