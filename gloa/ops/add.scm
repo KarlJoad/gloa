@@ -8,5 +8,5 @@
   "Register ARTICLE with the database and copy the document from ARTICLE-PATH to
 the document store."
   (begin
-    (add-to-db (%default-db-location) article article-path)
+    (add-to-db (gloa-db-location) article article-path)
     (add-to-store article article-path)))

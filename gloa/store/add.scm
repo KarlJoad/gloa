@@ -8,7 +8,7 @@
   "Add ARTICLE to the document store and copying ARTICLE-FILE-PATH to the
 document store."
   (let* ((result-path (base32-file-name article article-file-path))
-         (out (string-append (%default-storage-directory) result-path)))
-    (mkdir-p (%default-storage-directory))
+         (out (string-append (gloa-storage-directory) result-path)))
+    (mkdir-p (gloa-storage-directory))
     (copy-file article-file-path out)
     (chmod out #o644)))
