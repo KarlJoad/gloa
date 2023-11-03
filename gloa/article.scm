@@ -18,7 +18,8 @@
   (authors article-authors)
   (path article-path))
 
-(define* (make-article title authors #:optional (path ""))
+(define* (make-article title authors
+                       #:optional (path "0000000000000000000000000000000000000000000000000000"))
   (%make-article title authors path))
 
 (define (serialize-article-authors author-list)
