@@ -8,4 +8,6 @@
 
 (define (hash-document file-path)
   "Return the hash for the document at FILE-PATH."
-  (bytevector->base32-string (file-sha256 file-path)))
+  (if (file-exists? file-path)
+      (bytevector->base32-string (file-sha256 file-path))
+      "0000000000000000000000000000000000000000000000000000"))
