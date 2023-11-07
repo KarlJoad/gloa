@@ -3,7 +3,7 @@
   #:use-module (srfi srfi-64)
   #:use-module (tests utils))
 
-(define %testing-database-path "test.db")
+(define %testing-database-path (test-database-path))
 
 (define (cleanup-test-db db)
   "Close DB and remove its file as cleanup when done using the testing database.

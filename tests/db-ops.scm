@@ -8,7 +8,7 @@
   #:use-module (srfi srfi-1)
   #:use-module (tests utils))
 
-(define %test-database-path "test.db")
+(define %test-database-path (test-database-path))
 
 (define (remove-test-db db)
   "Remove database file as cleanup when done using the testing database.
