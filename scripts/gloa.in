@@ -30,4 +30,25 @@
 
 (use-modules (gloa))
 
-(apply gloa-main (command-line))
+(define (initialize-gloa)
+  "Perform usual initialization for stand-alone Gloa commands."
+  ;; By default don't annoy users with deprecation warnings.  In practice,
+  ;; 'define-deprecated' in (ice-9 deprecated) arranges so that those warnings
+  ;; are emitted at expansion-time only, but there are cases where they could
+  ;; slip through, for instance when interpreting code.
+  ;; (unless (getenv "GUILE_WARN_DEPRECATED")
+  ;;   (debug-disable 'warn-deprecated))
+
+  ;; (install-locale)
+  ;; (textdomain %gettext-domain)
+
+  ;; Ignore SIGPIPE.  If the daemon closes the connection, we prefer to be
+  ;; notified via an EPIPE later.
+  ;; (sigaction SIGPIPE SIG_IGN)
+
+  (setvbuf (current-output-port) 'line)
+  (setvbuf (current-error-port) 'line))
+
+(define (gloa-main arg0 . args)
+  (initialize-gloa)
+  (apply run-gloa (command-line)))

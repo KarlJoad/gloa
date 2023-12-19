@@ -113,3 +113,7 @@ number of times."
   no-sql-match-exception?
   ;; (reason no-sql-match-exception-reason)
   )
+
+(define (list-all-tables)
+  "List all the tables in the current database."
+  (query* "SELECT name FROM sqlite_schema WHERE type='table' ORDER BY name;"))

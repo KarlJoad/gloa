@@ -24,3 +24,9 @@ CREATE TABLE documents_authors_link (
     FOREIGN KEY(document_id) REFERENCES documents(id),
     UNIQUE(author_id,document_id) -- Pairing of document and author must be unique
 );
+
+DROP TABLE IF EXISTS doc_blobs;
+CREATE TABLE IF NOT EXISTS files (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    path TEXT NOT NULL DEFAULT ''
+);
