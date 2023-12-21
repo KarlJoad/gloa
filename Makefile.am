@@ -31,6 +31,12 @@ SOURCES =                \
   gloa/store/remove.scm  \
   gloa.scm
 
+nobase_dist_guilemodule_DATA =  \
+  gloa/db/schema.sql
+
+# Files to place in $datarootdir & distribute
+dist_pkgdata_DATA =
+
 EXTRA_DIST =            \
   README                \
   bootstrap             \

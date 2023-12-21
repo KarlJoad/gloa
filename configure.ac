@@ -9,12 +9,19 @@ if test "x$GUILD" = "x"; then
    AC_MSG_ERROR(['guild' binary not found; please check your guile-3.x installation.])
 fi
 
+dnl Provide an early evaluation of the --prefix to use for expansion elsewhere.
+gloa_prefix="`eval echo $prefix | sed -e"s|NONE|/usr/local|g"`"
+
+dnl Place things inside share/gloa
+gloa_pkgdatadir="`eval echo ${datarootdir}/gloa | sed -e "s|NONE|$gloa_prefix|g"`"
+AC_SUBST([gloa_pkgdatadir])
+
 AC_CONFIG_FILES([Makefile])
+
 AC_CONFIG_FILES([pre-inst-env], [chmod +x pre-inst-env])
 AC_CONFIG_FILES([scripts/gloa], [chmod +x scripts/gloa])
 
 dnl Installation directories for .scm and .go files.
-gloa_prefix="`eval echo $prefix | sed -e"s|NONE|/usr/local|g"`"
 gloa_libdir="`eval echo $libdir | sed -e"s|NONE|$gloa_prefix|g"`"
 guilemoduledir="`eval echo ${datarootdir}/guile/site/$GUILE_EFFECTIVE_VERSION | sed -e "s|NONE|$gloa_prefix|g"`"
 guileobjectdir="`eval echo ${libdir}/guile/$GUILE_EFFECTIVE_VERSION/site-ccache | sed -e "s|NONE|$gloa_prefix|g"`"

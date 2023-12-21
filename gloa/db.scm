@@ -3,7 +3,8 @@
   #:use-module (ice-9 textual-ports)
   #:use-module (ice-9 exceptions)
   #:use-module (gloa utils)
-  #:export (init-db
+  #:export (gloa-schema-file
+            init-db
             open-db
             close-db
 
@@ -15,7 +16,11 @@
             make-no-sql-match-exception
             no-sql-match-exception?))
 
-(define %GLOA_SCHEMA_FILE "data/schema.sql")
+(define gloa-schema-file
+  ;; Name of the file containing the SQL schema, or #f.
+  ;; The default location is in the install directory, alongside the database
+  ;; operations.
+  (make-parameter #f))
 
 ;; See https://www.sqlite.org/capi3ref.html for how SQLite behaves internally,
 ;; which directs how guile-sqlite3 and its API behave.
@@ -30,8 +35,11 @@ returning it."
 
 (define (init-db db-path)
   "Initialize the database with the schema in %GLOA_SCHEMA_FILE."
+  (define schema
+    (or (gloa-schema-file)
+        (search-path %load-path "gloa/db/schema.sql")))
   (let ((db (create-db db-path)))
-    (sqlite-exec db (call-with-input-file %GLOA_SCHEMA_FILE get-string-all))
+    (sqlite-exec db (call-with-input-file schema get-string-all))
     db))
 
 (define (open-db db-path)
