@@ -1,5 +1,6 @@
 (define-module (gloa article)
   #:use-module (gloa utils)
+  #:use-module (gloa store hash)
   #:use-module (srfi srfi-9) ; Records
   #:export (article
             make-article
@@ -19,7 +20,7 @@
   (path article-path))
 
 (define* (make-article title authors
-                       #:optional (path "0000000000000000000000000000000000000000000000000000"))
+                       #:optional (path empty-hash))
   (%make-article title authors path))
 
 (define (serialize-article-authors author-list)
