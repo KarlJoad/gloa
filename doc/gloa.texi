@@ -56,6 +56,7 @@ and Mendeley.
 * Introduction::                What is Gloa?
 * Importing Documents::         Getting documents into Gloa.
 * The Database::                How Gloa stores and finds things.
+* The Store::                   Where Gloa stores things.
 * Searching::                   Searching the database.
 * Exporting::                   Getting information out of Gloa.
 * Interacting with Gloa::       Using Gloa.
@@ -107,6 +108,10 @@ An SQLite database for quickly searching, organizing, and finding
 articles.  @xref{The Database} for more information on the database, its
 schema, and how it is used.
 @item
+Simple directory structure for files managed and stored by
+Gloa. @xref{The Store} for more information about the store and how it
+is used.
+@item
 Searching the database with a variety of terms using a variety of
 syntaxes. @xref{Searching} for the terms that can be used for searching
 and the various syntaxes supported.
@@ -136,11 +141,11 @@ has settled on using @BibTeX{} as the default reference format, that is
 currently the best (and only) supported format.
 
 When a document is imported, a copy of the provided document is made,
-and stored in @code{%default-storage-directory}.  This defaults to
-@value{DEFAULT-STORAGE-DIRECTORY}, which usually expands to
-@file{$HOME/.local/gloa/}.  Newly imported documents get renamed
-slightly to make finding them faster, and is done by hashing the
-document.
+and stored in @code{%default-storage-directory}, also called the store
+@xref{The Store}.  This defaults to @value{DEFAULT-STORAGE-DIRECTORY},
+which usually expands to @file{$HOME/.local/gloa/}.  Newly imported
+documents get renamed slightly to make finding them faster, and is done
+by hashing the document.
 
 @quotation TODO
 What gets hashed to make a unique name for the PDF file is not currently
@@ -200,6 +205,19 @@ Reference Manual}.
 
 Currently, the database defaults to @value{DEFAULT-DB-LOCATION}, which
 usually ends up expanding to @file{$HOME/.cache/gloa/gloa.sqlite}.
+
+@node The Store
+@chapter The Store
+
+The store is the location where all of documents you ask Gloa to manage
+will be stored.  By default, it is a directory in your home folder that
+uses the hash of the documents themselves as the file name.  This means
+the store has a relatively flat and difficult-to-navigate structure, but
+you are not intended to visit this directory yourself. Instead, Gloa is
+supposed to handle the store for you.
+
+The store is called @code{%default-storage-directory} in Scheme, whose
+default path is @value{DEFAULT-STORAGE-DIRECTORY}.
 
 @node Searching
 @chapter Searching
