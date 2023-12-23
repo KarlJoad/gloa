@@ -3,7 +3,6 @@
   #:use-module (gloa utils)
   #:use-module (gloa store hash)
   #:use-module (gloa article)
-  #:use-module (gloa store hash)
   #:export (base32-file-name))
 
 ;; On Linux, most file systems have a maximum path length of 255 characters.
