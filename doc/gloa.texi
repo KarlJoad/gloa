@@ -147,18 +147,23 @@ which usually expands to @file{$HOME/.local/gloa/}.  Newly imported
 documents get renamed slightly to make finding them faster, and is done
 by hashing the document.
 
-@quotation TODO
-What gets hashed to make a unique name for the PDF file is not currently
-known.  I can hash just the metadata of the file (which would mean
-bibliography information automatically ends up in the same spot), @b{OR}
-I could hash the document itself.
+When a document is imported, the document's content is hashed to create
+a unique name for the file. This hash is then used as a prefix for the
+title of the document.  The title used is the one that the user provided
+as metadata to Gloa, with special characters removed. The document's
+contents are fed into the SHA256 algorithm, whose result is output in
+Base32.  This is the same method as Nix and Guix use for their
+derivations and stores.
+
+@quotation NOTE
+Because the document's content itself is hashed, if you attempt to add
+the @emph{exact} same document to the store, then Gloa will ask you what
+to do.
 @end quotation
 
-@quotation TODO
-MD5 is a fast enough hash algorithm, but I am not sure how many
-collisions can eventually be encountered.  SHA @emph{would} work
-instead, but that might be too slow, and I am not sure if I want to deal
-with the ``broken'' SHA-1 problem.
+@quotation NOTE
+Gloa does not support reading PDF files for document metadata currently.
+You must manually provide the title you want the document to have.
 @end quotation
 
 @menu
@@ -211,13 +216,17 @@ usually ends up expanding to @file{$HOME/.cache/gloa/gloa.sqlite}.
 
 The store is the location where all of documents you ask Gloa to manage
 will be stored.  By default, it is a directory in your home folder that
-uses the hash of the documents themselves as the file name.  This means
+uses the hash of the documents' contents as the file name.  This means
 the store has a relatively flat and difficult-to-navigate structure, but
 you are not intended to visit this directory yourself. Instead, Gloa is
 supposed to handle the store for you.
 
 The store is called @code{%default-storage-directory} in Scheme, whose
 default path is @value{DEFAULT-STORAGE-DIRECTORY}.
+
+As mentioned in @pxref{Importing Documents}, the file name for the
+document is built using a Base32-encoded SHA256 hash of the document's
+contents and the title of the document.
 
 @node Searching
 @chapter Searching
