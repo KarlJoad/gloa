@@ -24,7 +24,18 @@
    (string-append
     (or (getenv "XDG_DATA_HOME")
         (format #f "~a/.local" (getenv "HOME")))
-    "/gloa/")))
+    "/gloa/")
+   ;; Converter ensures a trailing slash is added to this parameter.
+   (lambda (new-val)
+     (if (not (string? new-val))
+         ;; TODO: Raise a store-exception here
+         (error "Gloa storage directory path must be a string"))
+     (if (not (string-suffix? "/" new-val))
+         (begin (format (current-error-port)
+                        "Converting provided store path (~s) to have trailing slash~%"
+                        new-val)
+                (string-append new-val "/"))
+         new-val))))
 
 (define gloa-user-config-location
   ;; Location of user's configuration of Gloa.
