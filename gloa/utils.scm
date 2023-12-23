@@ -1,7 +1,9 @@
 (define-module (gloa utils)
   #:use-module (ice-9 match)
+  #:use-module (ice-9 ftw)
   #:export (string-split-substring
-            mkdir-p))
+            mkdir-p
+            delete-file-recursively))
 
 (define (string-split-substring str substr)
   "Split the string @var{str} into a list of substrings delimited by the
@@ -49,3 +51,45 @@ substring @var{substr}."
                  (loop tail path)
                  (apply throw args))))))
       (() #t))))
+
+;; Taken from (guix build utils)
+(define-syntax-rule (warn-on-error expr file)
+  (catch 'system-error
+    (lambda ()
+      expr)
+    (lambda args
+      (format (current-error-port)
+              "warning: failed to delete ~a: ~a~%"
+              file (strerror
+                    (system-error-errno args))))))
+
+;; Taken from (guix build utils), modified slightly for ease of reading.
+(define* (delete-file-recursively dir
+                                  #:key follow-mounts?)
+  "Delete DIR recursively, like `rm -rf', without following symlinks.  Don't
+follow mount points either, unless FOLLOW-MOUNTS? is true.  Report but ignore
+errors."
+  (define (enter? dir stat result) ;; Should this directory/device be entered?
+    (let ((dev (stat:dev (lstat dir))))
+      (or follow-mounts?
+          (= dev (stat:dev stat)))))
+  (define (del-file file stat result)
+    (warn-on-error (delete-file file) file))
+  (define (del-dir dir stat result)
+    (warn-on-error (rmdir dir) dir))
+
+  (define (error file stat errno result)
+    (format (current-error-port)
+            "warning: failed to delete ~a: ~a~%"
+            file (strerror errno)))
+
+  (file-system-fold enter?     ; enter?
+                    del-file   ; leaf
+                    (const #t) ; down
+                    del-dir    ; up
+                    (const #t) ; skip
+                    error      ; error
+                    #t         ; init
+                    dir        ; start-file-name
+                    ;; Don't follow symlinks.
+                    lstat))
