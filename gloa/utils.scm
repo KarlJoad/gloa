@@ -3,7 +3,8 @@
   #:use-module (ice-9 ftw)
   #:export (string-split-substring
             mkdir-p
-            delete-file-recursively))
+            delete-file-recursively
+            find-extension))
 
 (define (string-split-substring str substr)
   "Split the string @var{str} into a list of substrings delimited by the
@@ -93,3 +94,11 @@ errors."
                     dir        ; start-file-name
                     ;; Don't follow symlinks.
                     lstat))
+
+(define (find-extension file)
+  "Return the extension code (including the period) of FILE.
+If FILE does not have an extension, the empty string is returned."
+  (let ((extension-start-idx (string-index-right file #\.)))
+    (if extension-start-idx
+        (substring file extension-start-idx)
+        "")))
