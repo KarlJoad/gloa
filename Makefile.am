@@ -67,7 +67,8 @@ TESTS =                \
   tests/article.scm    \
   tests/import-bibtex.scm \
   tests/db.scm         \
-  tests/db-ops.scm
+  tests/db-ops.scm     \
+  tests/store-ops.scm
 
 TEST_EXTENSIONS = .scm
 SCM_LOG_COMPILER = $(top_builddir)/pre-inst-env $(GUILE)
