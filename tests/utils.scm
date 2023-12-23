@@ -1,7 +1,8 @@
 (define-module (tests utils)
   #:use-module (srfi srfi-64)
   #:export (with-tests
-            test-database-path))
+            test-database-path
+            test-store-path))
 
 ;; Taken from Haunt commit 4848354
 ;; https://git.dthompson.us/haunt.git/tree/tests/utils.scm?id=4848354e9be7c4f444ef44a586560f71f50a8673
@@ -20,3 +21,12 @@ small tests."
   ;; (guile) File System "A loop can try again with another name if the file
   ;; exists (error ‘EEXIST’)."
   (string-append (tmpnam) ".db"))
+
+(define (test-store-path)
+  "When called, return a fairly-unique path for a document store.
+This is @emph{not} a particularly random path, but should be good enough for
+small tests."
+  ;; FIXME: mkdtemp is NOT assured to return a unique path!
+  ;; (guile) File System "An error may be thrown if the template has the wrong format or if
+  ;; the directory cannot be created."
+  (string-append (mkdtemp "/tmp/gloa-testXXXXXX")))
