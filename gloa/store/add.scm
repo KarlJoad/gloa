@@ -10,5 +10,11 @@ document store."
   ;; TODO: Throw error if store has not already been created.
   (let* ((result-path (base32-file-name article article-file-path))
          (out (string-append (gloa-storage-directory) result-path)))
-    (copy-file article-file-path out)
-    (chmod out #o644)))
+    (if (not (file-exists? out))
+        (begin
+          (copy-file article-file-path out)
+          (chmod out #o644)
+          (format (current-error-port) "Adding ~a to store with path ~a~%"
+                  article out))
+        (format (current-error-port) "~a already present in store at ~a! Not adding~%"
+                article out))))
