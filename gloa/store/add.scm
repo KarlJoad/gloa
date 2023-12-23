@@ -7,8 +7,8 @@
 (define (add-to-store article article-file-path)
   "Add ARTICLE to the document store and copying ARTICLE-FILE-PATH to the
 document store."
+  ;; TODO: Throw error if store has not already been created.
   (let* ((result-path (base32-file-name article article-file-path))
          (out (string-append (gloa-storage-directory) result-path)))
-    (mkdir-p (gloa-storage-directory))
     (copy-file article-file-path out)
     (chmod out #o644)))
