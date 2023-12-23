@@ -27,6 +27,7 @@ SOURCES =                \
   gloa/db/add.scm        \
   gloa/db/remove.scm     \
   gloa/db/search.scm     \
+  gloa/db/maintenance.scm \
   gloa/store.scm         \
   gloa/store/add.scm     \
   gloa/store/remove.scm  \
