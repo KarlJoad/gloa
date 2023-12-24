@@ -55,6 +55,7 @@ and Mendeley.
 @menu
 * Introduction::                What is Gloa?
 * Importing Documents::         Getting documents into Gloa.
+* The Entry::                   Entries are the fundamental item in Gloa.
 * The Database::                How Gloa stores and finds things.
 * The Store::                   Where Gloa stores things.
 * Searching::                   Searching the database.
@@ -205,14 +206,60 @@ Reference Manual}.
 (define article-metadata (import-bibtex "file-name"))
 @end lisp
 
+@node Import Flow
+@section Import Flow
+When you import a new document, it goes through several stages.
+@enumerate
+@item
+Build the metadata that represents the document.
+This is done by importing the bibliography information, using a function like @code{import-bibtex}.
+
+@item
+The path to the source document (outside the store) is used to access the document's contents, which are hashed.
+
+@item
+After gathering the metadata and content hash, the document has an entry formed by combining the metadata with the hash.
+
+@item
+The entry's document is added to @xref{The Store} using the hash as a prefix for the document in the store.
+
+@item
+The entry is added to @xref{The Database}, with the hash recorded.
+
+@end enumerate
+
+@node The Entry
+@chapter The Entry
+The entry is the fundamental unit Gloa works with.  An entry is composed
+of your document's metadata and your document's content's hash.
+
+@quotation NOTE
+A document's entry does @emph{not} contain the document's content
+itself.  An entry only contains your document's metadata and a hash of
+the document's contents.
+@end quotation
+
+@node Why Entry
+The entry is intended to encapsulate the information that Gloa needs
+about a document to work with it.  In particular, the metadata is needed
+for querying the database and the content hash is needed to work with
+the store.
+
 @node The Database
 @chapter The Database
+
+The database works with your documents in terms of entries @pxref{The
+Entry}.  When a query returns data to the user, it returns a set of
+entries.  These entries must then be separately passed to the store
+functions to produce a set of documents.
 
 Currently, the database defaults to @value{DEFAULT-DB-LOCATION}, which
 usually ends up expanding to @file{$HOME/.cache/gloa/gloa.sqlite}.
 
 @node The Store
 @chapter The Store
+
+The store works with your documents in terms of entries @xref{The Entry}.
 
 The store is the location where all of documents you ask Gloa to manage
 will be stored.  By default, it is a directory in your home folder that
