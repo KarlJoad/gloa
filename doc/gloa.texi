@@ -303,6 +303,7 @@ Entry}.  When a query returns data to the user, it returns a set of
 entries.  These entries must then be separately passed to the store
 functions to produce a set of documents.
 
+@cindex Default gloa-db-location
 Currently, the database defaults to @value{DEFAULT-DB-LOCATION}, which
 usually ends up expanding to @file{$HOME/.cache/gloa/gloa.sqlite}.  You
 can find Gloa's current understanding of the database's location with
@@ -363,6 +364,7 @@ multiple times to specify multiple authors.
 
 @node Search Syntax
 @section Search Syntax
+@cindex Search Syntax
 
 Gloa supports two search syntaxes.  The first is an s-expression-based
 syntax, which is useful for programmatically creating search queries.
@@ -372,7 +374,6 @@ command-line searching and user-use.
 The natural-language syntax will be converted to the s-expression syntax
 before being executed.
 
-@cindex syntax
 @menu
 * Sexp Syntax::                 A syntax using S-expressions.
 * Natural Syntax::              A more natural syntax.
@@ -482,7 +483,7 @@ database. This means you may lose bibliographic information!
 
 @node Interacting with Gloa
 @chapter Interacting with Gloa
-@cindex repl
+@
 @cindex REPL
 
 The user can interact with Gloa in three ways:
@@ -585,7 +586,7 @@ metadata.
 
 @node Contributing
 @chapter Contributing
-@cindex documentation
+@cindex Contributing
 
 Gloa is documented using the Texinfo system.
 
@@ -620,6 +621,11 @@ After that you can run one of the following commands:
       You can point your browser to the relevant file in the
       @file{doc/gloa.html} directory.
 @end itemize
+
+@c *********************************************************************
+@node Concept Index
+@unnumbered Concept Index
+@printindex cp
 
 @bye
 
