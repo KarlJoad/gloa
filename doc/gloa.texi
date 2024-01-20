@@ -304,7 +304,10 @@ entries.  These entries must then be separately passed to the store
 functions to produce a set of documents.
 
 Currently, the database defaults to @value{DEFAULT-DB-LOCATION}, which
-usually ends up expanding to @file{$HOME/.cache/gloa/gloa.sqlite}.
+usually ends up expanding to @file{$HOME/.cache/gloa/gloa.sqlite}.  You
+can find Gloa's current understanding of the database's location with
+the @code{gloa-db-location} parameter (@pxref{Parameters,,, guile, GNU
+Guile Reference Manual}) from @code{(gloa config)}.
 
 @node The Store
 @chapter The Store
