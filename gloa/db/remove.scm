@@ -15,6 +15,8 @@
         (let ((doc-id (list-ref (query* to-id "SELECT id FROM documents WHERE title = :title"
                                         (title (article-title article)))
                                 0))
+              ;; For remove-from-db need to get list searching working.
+              ;; SELECT id from authors WHERE name IN ('Kuon, Ian','Rose, Jonathan'); works
               (auth-ids (query* to-id
                                 (format #f "SELECT id from authors WHERE name IN ~a"
                                         (list->sql (article-authors article))))))

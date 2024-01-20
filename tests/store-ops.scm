@@ -36,4 +36,13 @@
         (begin
           (add-to-store %test-article-simple %test-article-simple-path)))
 
+      ;; (test-equal "search-store-by-title, entry exists"
+      ;;   (find-article-by-title %test-database-path (article-title %test-article-simple))
+      ;;   %test-article-simple)
+
+      ;; (test-error "remove-from-store" &no-sql-match-exception
+      ;;   (begin
+      ;;     (remove-from-store article-path)
+      ;;     (find-article-by-title %test-database-path (article-title %test-article-simple))))
+
       cleanup-files)))

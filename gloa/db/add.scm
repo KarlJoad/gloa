@@ -31,9 +31,10 @@ path."
       (begin
         (format #t "~s not in database. Adding!~%" (article-title article-info))
         (with-db db-path
-          (query* "INSERT INTO documents(title, path) VALUES (:title, :path)"
+          (query* "INSERT INTO documents(title) VALUES (:title)"
                   (title (article-title article-info))
-                  (path (base32-file-name article-info article-pdf-path)))
+                  ;; (path (base32-file-name article-info article-pdf-path))
+                  )
           (let ((doc-id (list-ref
                          (query* to-id "SELECT id FROM documents WHERE title = :title"
                                  (title (article-title article-info)))

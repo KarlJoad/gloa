@@ -4,6 +4,8 @@
   #:use-module (gloa utils)
   #:export (add-to-store))
 
+;; FIXME: Should this function return the fully qualified file path to the document
+;; within the store, i.e. /home/user/.local/share/gloa/hash-title.pdf?
 (define (add-to-store article article-file-path)
   "Add ARTICLE to the document store and copying ARTICLE-FILE-PATH to the
 document store."

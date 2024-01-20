@@ -1,11 +1,18 @@
 PRAGMA foreign_keys = ON;
 
+-- Write-Ahead Log helps prevent SQLITE_LOCKED errors when there are several
+-- readers. It does not work on Hurd though...
+PRAGMA journal_mode = WAL;
+-- TODO: When WAL2 goes mainline, switch journal_mode to that.
+-- https://www.sqlite.org/cgi/src/doc/wal2/doc/wal2.md
+-- Need to make an upgrade script for that.
+
 DROP TABLE IF EXISTS documents;
 CREATE TABLE IF NOT EXISTS documents (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    title TEXT NOT NULL,
+    title TEXT NOT NULL
     -- Path to document inside Gloa's configured store
-    path TEXT NOT NULL DEFAULT ''
+    -- path TEXT NOT NULL DEFAULT ''
 );
 
 DROP TABLE IF EXISTS authors;
