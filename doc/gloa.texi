@@ -319,8 +319,17 @@ the store has a relatively flat and difficult-to-navigate structure, but
 you are not intended to visit this directory yourself. Instead, Gloa is
 supposed to handle the store for you.
 
-The store is called @code{%default-storage-directory} in Scheme, whose
-default path is @value{DEFAULT-STORAGE-DIRECTORY}.
+The store location can be changed by changing the
+@code{gloa-storage-directory} parameter to the desired path.  If you do
+not specify a trailing slash (@code{/}), then Gloa will add it and log a
+message.
+
+@cindex Default gloa-storage-directory
+The store is located at the path currently in the
+@code{gloa-storage-directory} parameter (@pxref{Parameters,,, guile, GNU
+Guile Reference Manual}) from @code{(gloa config)}.
+@code{gloa-storage-directory} has a default path of
+@value{DEFAULT-STORAGE-DIRECTORY}.
 
 As mentioned in @pxref{Importing Documents}, the file name for the
 document is built using a Base32-encoded SHA256 hash of the document's
