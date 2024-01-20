@@ -231,8 +231,77 @@ The entry is added to @xref{The Database}, with the hash recorded.
 
 @end enumerate
 
+@node The Entry
+@chapter The Entry
+The entry in @code{(gloa entry)} is the fundamental unit Gloa works
+with.  An entry is composed of your document's metadata and your
+document's content's hash.  All user-facing functionality is exposed
+through an interface that accepts and returns entries.
+
+@quotation NOTE
+A document's entry does @emph{not} contain the document's content
+itself.  An entry only contains your document's metadata and a hash of
+the document's contents.  To access the entry's corresponding document
+(if there is one), you should use an entry converter (@pxref{Entry
+Converters}).
+@end quotation
+
+@menu
+* Entry Converters::            Converting from an entry to something else.
+* Modifying Entries::           How a user can modify entries.
+* Incomplete Entries::          Gloa accepts and handles incomplete entries.
+@end menu
+
+@cindex Why Entry
+The entry is intended to encapsulate all the information that Gloa needs
+about a document to work with it.  In particular, the metadata is needed
+for querying the database and the content hash is needed to work with
+the store.
+
+Once you have access to an entry, you may change either of the entry's
+components, with some restrictions (@pxref{Modifying Entries}).
+
+@node Entry Converters
+@section Entry Converters
+There will be several conversion functions that act on entries.  The
+most important one returns a path to the document in the store using the
+information stored within the provided entry.
+
+@node Modifying Entries
+@section Modifying Entries
+Modifying an entry in Gloa behaves in functional programming way.  When
+a modification is made to an entry, a @emph{new} entry is created by
+copying the old entry, then having the requested modifications applied
+to the new entry.
+
+@quotation Warning
+You should only modify entries through the entry API. Performing
+modifications outside of these functions can produce invalid entries
+which cannot be handled by Gloa.
+@end quotation
+
+@node Incomplete Entries
+@section Incomplete Entries
+Entries are allowed to be incomplete.  An incomplete entry is lacking
+@emph{either} its document metadata or the document's content's hash,
+but @b{not} both.
+
+An entry that lacks a document allows users to import a document's
+metadata into the database without needing to immediately provide a
+document.
+
+An incomplete entry without metadata is less useful, but allows users to
+add to the store without adding to the database.  This is less useful as
+Gloa will not be able to automatically track the document until an entry
+is added to the database, but it is allowed nonetheless.
+
 @node The Database
 @chapter The Database
+
+The database works with your documents in terms of entries @pxref{The
+Entry}.  When a query returns data to the user, it returns a set of
+entries.  These entries must then be separately passed to the store
+functions to produce a set of documents.
 
 Currently, the database defaults to @value{DEFAULT-DB-LOCATION}, which
 usually ends up expanding to @file{$HOME/.cache/gloa/gloa.sqlite}.
