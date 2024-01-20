@@ -166,8 +166,12 @@ Gloa does not support reading PDF files for document metadata currently.
 You must manually provide the title you want the document to have.
 @end quotation
 
+Each following section describes one of the document metadata import
+features for a bibliography/citation entry.
+
 @menu
 * BibTeX::                      Importing articles using @BibTeX
+* Import Flow::                 Default workflow for importing documents.
 @end menu
 
 @node BibTeX
@@ -204,6 +208,28 @@ Reference Manual}.
 @lisp
 (define article-metadata (import-bibtex "file-name"))
 @end lisp
+
+@node Import Flow
+@section Import Flow
+When you import a new document, it goes through several stages.
+@enumerate
+@item
+Build the metadata that represents the document.
+This is done by importing the bibliography information, using a function like @code{import-bibtex}.
+
+@item
+The path to the source document (outside the store) is used to access the document's contents, which are hashed.
+
+@item
+After gathering the metadata and content hash, the document has an entry formed by combining the metadata with the hash.
+
+@item
+The entry's document is added to @xref{The Store} using the hash as a prefix for the document in the store.
+
+@item
+The entry is added to @xref{The Database}, with the hash recorded.
+
+@end enumerate
 
 @node The Database
 @chapter The Database
